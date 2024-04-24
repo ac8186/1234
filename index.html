@@ -98,8 +98,7 @@
 <p>2.如没安装</p>
 <p>下载Git<br><a href="https://link.zhihu.com/?target=https://git-scm.com/download/mac">https://link.zhihu.com/?target=https%3A//git-scm.com/download/mac</a></p>
 <p>安装nvm<br>curl -o- <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh">https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh</a> | bash</p>
-<p>##环境配置</p>
-<p>1.用vi创建文件并打开进行编辑</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>1.用vi创建文件并打开进行编辑</p>
 <p>vi .bash_profile</p>
 <p>2.粘贴代码</p>
 <p>export NVM_DIR&#x3D;”$HOME&#x2F;.nvm”</p>
@@ -108,8 +107,7 @@
 <p>Shift+ZZ</p>
 <p>4.配置</p>
 <p>source .bash_profile</p>
-<p>##安装Hexo</p>
-<p>1.在桌面创建本地目录</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>1.在桌面创建本地目录</p>
 <p>cd ~&#x2F;Desktop</p>
 <p>mkdir hexo</p>
 <p>cd hexo</p>
@@ -126,12 +124,11 @@
 <p>6.新建一篇博客</p>
 <p>hexo n “标题”</p>
 <p>在本地目录下的 &#x2F;source&#x2F;_post&#x2F; 会生成一个“标题.md”<br>适用notepad++或– 编辑内容即可</p>
-<p>##托管到Github</p>
-<p>1.新建仓库</p>
+<h2 id="托管到Github"><a href="#托管到Github" class="headerlink" title="托管到Github"></a>托管到Github</h2><p>1.新建仓库</p>
 <p>打开<a target="_blank" rel="noopener" href="https://github.com/%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93New">https://github.com/，新建一个项目仓库New</a> repository<br>名字格式为name.github.io name必须与用户名一致</p>
 <p>2.修改配置</p>
-<p>打开本地目录下的_config.yml文件，并添加</p>
-<h1 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h1><h2 id="Docs-https-hexo-io-docs-one-command-deployment"><a href="#Docs-https-hexo-io-docs-one-command-deployment" class="headerlink" title="Docs: https://hexo.io/docs/one-command-deployment"></a>Docs: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">https://hexo.io/docs/one-command-deployment</a></h2><p>deploy:<br>  type: git<br>  repository: <a target="_blank" rel="noopener" href="https://github.com/name/name.github.io.git">https://github.com/name/name.github.io.git</a><br>  branch: master</p>
+<p>打开本地目录下的_config.yml文件，并添加<br>”# Deployment</p>
+<h2 id="Docs-https-hexo-io-docs-one-command-deployment"><a href="#Docs-https-hexo-io-docs-one-command-deployment" class="headerlink" title="Docs: https://hexo.io/docs/one-command-deployment"></a>Docs: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">https://hexo.io/docs/one-command-deployment</a></h2><p>deploy:<br>  type: git<br>  repository: <a target="_blank" rel="noopener" href="https://github.com/name/name.github.io.git">https://github.com/name/name.github.io.git</a><br>  branch: master“</p>
 <p>3.安装部署工具</p>
 <p>npm install hexo-deployer-git –save</p>
 <p>4.设置身份令牌</p>
@@ -139,14 +136,12 @@
 <p>登录Github账户<br>生成新的token<br><a href="https://link.zhihu.com/?target=https://github.com/settings/tokens">https://link.zhihu.com/?target=https%3A//github.com/settings/tokens</a><br>note随便起，全部勾选，保存</p>
 <p>5.添加身份令牌</p>
 <p>身份令牌每次有效期30天，每次更新都要输一遍，通过如下命令添加<br>git remote set-url origin https:&#x2F;&#x2F;<your_token>@github.com&#x2F;<USERNAME>&#x2F;<REPO>.git</p>
-<p>##三联更新</p>
-<p>hexo clean<br>hexo generate<br>hexo deploy</p>
-<p>完成✿✿ヽ(°▽°)ノ✿</p>
-
+<h2 id="三联更新"><a href="#三联更新" class="headerlink" title="三联更新"></a>三联更新</h2><p>hexo clean<br>hexo generate<br>hexo deploy</p>
+<h2 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/%E9%83%A8%E7%BD%B2Hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/" data-id="clvdgkxj50001v8udgu4wcs1a" data-title="部署Hexo博客并托管到Github" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/24/%E9%83%A8%E7%BD%B2Hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/" data-id="clvdgthil0002ziud2ocm5422" data-title="部署Hexo博客并托管到Github" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -187,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/24/TEST/" data-id="clvdgkxiz0000v8udgt8xhdpc" data-title="TEST" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/24/TEST/" data-id="clvdgthie0000ziud6k869apy" data-title="TEST" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -238,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/23/hello-world/" data-id="clvdgkxj80002v8udfile58mi" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/04/23/hello-world/" data-id="clvdgthij0001ziud20bj4vtg" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
