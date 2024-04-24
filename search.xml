@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>部署Hexo博客并托管到Github</title>
+      <link href="/2024/04/24/%E9%83%A8%E7%BD%B2Hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
+      <url>/2024/04/24/%E9%83%A8%E7%BD%B2Hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1-Mac下打开终端"><a href="#1-Mac下打开终端" class="headerlink" title="1.Mac下打开终端"></a>1.Mac下打开终端</h3><p>git –version<br>nvm –version</p><p>如果显示版本号则表示已安装</p><h3 id="2-如没安装"><a href="#2-如没安装" class="headerlink" title="2.如没安装"></a>2.如没安装</h3><p>下载Git<br><a href="https://link.zhihu.com/?target=https://git-scm.com/download/mac">https://link.zhihu.com/?target=https%3A//git-scm.com/download/mac</a></p><p>安装nvm<br>curl -o- <a href="https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh">https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh</a> | bash</p><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="1-用vi创建文件并打开进行编辑"><a href="#1-用vi创建文件并打开进行编辑" class="headerlink" title="1.用vi创建文件并打开进行编辑"></a>1.用vi创建文件并打开进行编辑</h3><p>vi .bash_profile</p><h3 id="2-粘贴代码"><a href="#2-粘贴代码" class="headerlink" title="2.粘贴代码"></a>2.粘贴代码</h3><p>export NVM_DIR&#x3D;”$HOME&#x2F;.nvm”</p><p>[ -s “$NVM_DIR&#x2F;nvm.sh” ] &amp;&amp; . “$NVM_DIR&#x2F;nvm.sh”</p><h3 id="3-保存退出"><a href="#3-保存退出" class="headerlink" title="3.保存退出"></a>3.保存退出</h3><p>Shift+ZZ</p><h3 id="4-配置"><a href="#4-配置" class="headerlink" title="4.配置"></a>4.配置</h3><p>source .bash_profile</p><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h3 id="1-在桌面创建本地目录"><a href="#1-在桌面创建本地目录" class="headerlink" title="1.在桌面创建本地目录"></a>1.在桌面创建本地目录</h3><p>cd ~&#x2F;Desktop</p><p>mkdir hexo</p><p>cd hexo</p><h3 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2.初始化"></a>2.初始化</h3><p>hexo init</p><p>npm install</p><h3 id="3-报错"><a href="#3-报错" class="headerlink" title="3.报错"></a>3.报错</h3><p>可能是没有权限，按照报错提示进行授权即可</p><h3 id="4-本地启动"><a href="#4-本地启动" class="headerlink" title="4.本地启动"></a>4.本地启动</h3><p>hexo generate 生成静态网页 简写为 hexo g</p><p>hexo server 运行hexo 简写为 hexo s</p><h3 id="5-网页测试"><a href="#5-网页测试" class="headerlink" title="5.网页测试"></a>5.网页测试</h3><p><a href="http://localhost:4000/">http://localhost:4000</a></p><h3 id="6-新建一篇博客"><a href="#6-新建一篇博客" class="headerlink" title="6.新建一篇博客"></a>6.新建一篇博客</h3><p>hexo n “标题”</p><p>在本地目录下的 &#x2F;source&#x2F;_post&#x2F; 会生成一个“标题.md”<br>适用notepad++或– 编辑内容即可</p><h2 id="托管到Github"><a href="#托管到Github" class="headerlink" title="托管到Github"></a>托管到Github</h2><h3 id="1-新建仓库"><a href="#1-新建仓库" class="headerlink" title="1.新建仓库"></a>1.新建仓库</h3><p>打开<a href="https://github.com/%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93New">https://github.com/，新建一个项目仓库New</a> repository<br>名字格式为name.github.io name必须与用户名一致</p><h3 id="2-修改配置"><a href="#2-修改配置" class="headerlink" title="2.修改配置"></a>2.修改配置</h3><p>打开本地目录下的_config.yml文件，并添加<br>!# Deployment<br>!## Docs: <a href="https://hexo.io/docs/one-command-deployment">https://hexo.io/docs/one-command-deployment</a><br>deploy:<br>  type: git<br>  repository: <a href="https://github.com/name/name.github.io.git">https://github.com/name/name.github.io.git</a><br>  branch: master</p><h3 id="3-安装部署工具"><a href="#3-安装部署工具" class="headerlink" title="3.安装部署工具"></a>3.安装部署工具</h3><p>npm install hexo-deployer-git –save</p><h3 id="4-设置身份令牌"><a href="#4-设置身份令牌" class="headerlink" title="4.设置身份令牌"></a>4.设置身份令牌</h3><p>由于Github安全机制，不能用密码直接git了</p><p>登录Github账户<br>生成新的token<br><a href="https://link.zhihu.com/?target=https://github.com/settings/tokens">https://link.zhihu.com/?target=https%3A//github.com/settings/tokens</a><br>note随便起，全部勾选，保存</p><h3 id="5-添加身份令牌"><a href="#5-添加身份令牌" class="headerlink" title="5.添加身份令牌"></a>5.添加身份令牌</h3><p>身份令牌每次有效期30天，每次更新都要输一遍，通过如下命令添加<br>git remote set-url origin https:&#x2F;&#x2F;<your_token>@github.com&#x2F;<USERNAME>&#x2F;<REPO>.git</p><h2 id="三联更新"><a href="#三联更新" class="headerlink" title="三联更新"></a>三联更新</h2><p>hexo clean<br>hexo generate<br>hexo deploy</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>TEST</title>
+      <link href="/2024/04/24/TEST/"/>
+      <url>/2024/04/24/TEST/</url>
+      
+        <content type="html"><![CDATA[<h2 id="这是一篇测试内容！！"><a href="#这是一篇测试内容！！" class="headerlink" title="这是一篇测试内容！！"></a>这是一篇测试内容！！</h2><p>2024 年4月24日！</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2024/04/23/hello-world/"/>
+      <url>/2024/04/23/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
