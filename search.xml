@@ -8,8 +8,14 @@
       <link href="/2024/04/25/Hexo%E5%B8%B8%E7%94%A8/"/>
       <url>/2024/04/25/Hexo%E5%B8%B8%E7%94%A8/</url>
       
-        <content type="html"><![CDATA[<h2 id="新建内容"><a href="#新建内容" class="headerlink" title="新建内容"></a>新建内容</h2><p>hexo n ”xxx“<br>生成&#x2F;source&#x2F;_post&#x2F;xxx.md</p><h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>hexo new page ”xxx“<br>生成&#x2F;source&#x2F;xxx.md<br>需要配合theme文件中的menu才能显示</p><h2 id="添加全文搜索"><a href="#添加全文搜索" class="headerlink" title="添加全文搜索"></a>添加全文搜索</h2><p> npm install hexo-generator-searchdb –save</p><p>打开 Hexo 站点的 _config.yml,添加配置<br>search:<br>  path: search.xml<br>  field: post<br>  format: html<br>  limit: 10000</p><p>打开 themes&#x2F;next&#x2F;_config.yml ,搜索关键字 local_search ,设置为 true：<br>!# Local search<br>!# Dependencies: <a href="https://github.com/flashlab/hexo-generator-search">https://github.com/flashlab/hexo-generator-search</a><br>local_search:<br>  enable: true</p><h2 id="设置默认为中文"><a href="#设置默认为中文" class="headerlink" title="设置默认为中文"></a>设置默认为中文</h2><p>先确认next&#x2F;language文件夹是zh-CN还是zn-Hans<br>theme文件夹里的是主题配置文件_config.yml，找到language项改为zh-CN。<br>本地安装目录_config.yml，找到language项改为zh-CN。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="新建内容"><a href="#新建内容" class="headerlink" title="新建内容"></a>新建内容</h2><p>hexo n ”xxx“<br>生成&#x2F;source&#x2F;_post&#x2F;xxx.md</p><h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>hexo new page ”xxx“<br>生成&#x2F;source&#x2F;xxx.md<br>需要配合theme文件中的menu才能显示</p><h2 id="新建分类"><a href="#新建分类" class="headerlink" title="新建分类"></a>新建分类</h2><p>hexo new page categories<br>生成&#x2F;source&#x2F;categories&#x2F;index.md<br>编辑，头文件添加，type: “categories”，保存<br>文章中在头文件中，添加categories：xxx，即可显示分类</p><h2 id="新建标签"><a href="#新建标签" class="headerlink" title="新建标签"></a>新建标签</h2><p>hexo new page tags<br>生成&#x2F;source&#x2F;tags&#x2F;index.md<br>编辑，头文件添加，type: “tags”,保存<br>文章中在头文件中，添加tags：xxx，即可显示标签</p><h2 id="添加全文搜索"><a href="#添加全文搜索" class="headerlink" title="添加全文搜索"></a>添加全文搜索</h2><p> npm install hexo-generator-searchdb –save</p><p>打开 Hexo 站点的 _config.yml,添加配置<br>search:<br>  path: search.xml<br>  field: post<br>  format: html<br>  limit: 10000</p><p>打开 themes&#x2F;next&#x2F;_config.yml ,搜索关键字 local_search ,设置为 true：<br>!# Local search<br>!# Dependencies: <a href="https://github.com/flashlab/hexo-generator-search">https://github.com/flashlab/hexo-generator-search</a><br>local_search:<br>  enable: true</p><h2 id="设置默认为中文"><a href="#设置默认为中文" class="headerlink" title="设置默认为中文"></a>设置默认为中文</h2><p>先确认next&#x2F;language文件夹是zh-CN还是zn-Hans<br>theme文件夹里的是主题配置文件_config.yml，找到language项改为zh-CN<br>本地安装目录_config.yml，找到language项改为zh-CN</p>]]></content>
       
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
       
       
         <tags>
