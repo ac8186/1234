@@ -6,7 +6,7 @@
   <link href="https://ac8186.github.io/atom.xml" rel="self"/>
   
   <link href="https://ac8186.github.io/"/>
-  <updated>2024-04-25T09:00:14.208Z</updated>
+  <updated>2024-04-26T07:40:21.359Z</updated>
   <id>https://ac8186.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在Github托管多个静态网页</title>
+    <link href="https://ac8186.github.io/2024/04/26/%E5%9C%A8Github%E6%89%98%E7%AE%A1%E5%A4%9A%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/"/>
+    <id>https://ac8186.github.io/2024/04/26/%E5%9C%A8Github%E6%89%98%E7%AE%A1%E5%A4%9A%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/</id>
+    <published>2024-04-26T07:28:52.000Z</published>
+    <updated>2024-04-26T07:40:21.359Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在Github托管个人网页，只能设置与用户名相同的Pages，生成xxx.github.io的地址访问<br>如何托管多个不同的静态网页？</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>以不同仓库存放不同网页，以二级域名访问</p><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>新建仓库，按需求命名为abc<br>进入仓库，上传网页<br>在abc仓库的settings中，开启Pages<br>设置默认访问分支</p><p>访问地址为 xxx.github.io&#x2F;abc&#x2F;</p><p>完成✿✿ヽ(°▽°)ノ✿</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h3&gt;&lt;p&gt;在Github托管个人网页，只能设置与用户名相同的Pages，生成xxx.github.io的地址访问&lt;br&gt;如何托管多个不同的静态网页？&lt;</summary>
+      
+    
+    
+    
+    <category term="折腾" scheme="https://ac8186.github.io/categories/%E6%8A%98%E8%85%BE/"/>
+    
+    
+    <category term="Github" scheme="https://ac8186.github.io/tags/Github/"/>
+    
+  </entry>
   
   <entry>
     <title>配置Hexo并绑定域名</title>

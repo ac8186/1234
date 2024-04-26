@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>在Github托管多个静态网页</title>
+      <link href="/2024/04/26/%E5%9C%A8Github%E6%89%98%E7%AE%A1%E5%A4%9A%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/"/>
+      <url>/2024/04/26/%E5%9C%A8Github%E6%89%98%E7%AE%A1%E5%A4%9A%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/</url>
+      
+        <content type="html"><![CDATA[<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在Github托管个人网页，只能设置与用户名相同的Pages，生成xxx.github.io的地址访问<br>如何托管多个不同的静态网页？</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>以不同仓库存放不同网页，以二级域名访问</p><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>新建仓库，按需求命名为abc<br>进入仓库，上传网页<br>在abc仓库的settings中，开启Pages<br>设置默认访问分支</p><p>访问地址为 xxx.github.io&#x2F;abc&#x2F;</p><p>完成✿✿ヽ(°▽°)ノ✿</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>配置Hexo并绑定域名</title>
       <link href="/2024/04/25/%E9%85%8D%E7%BD%AEHexo%E5%B9%B6%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D/"/>
       <url>/2024/04/25/%E9%85%8D%E7%BD%AEHexo%E5%B9%B6%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D/</url>
