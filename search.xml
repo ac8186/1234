@@ -5,10 +5,10 @@
     
     <entry>
       <title>详解Hexo的头文件front-matter</title>
-      <link href="/2024/04/26/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/"/>
-      <url>/2024/04/26/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/</url>
+      <link href="/2024/04/27/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/"/>
+      <url>/2024/04/27/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/</url>
       
-        <content type="html"><![CDATA[<h2 id="front-matter内容"><a href="#front-matter内容" class="headerlink" title="front-matter内容"></a>front-matter内容</h2><p>layout布局<br>title标题<br>date建立日期<br>updated更新日期<br>comments开启文章的评论功能true<br>tags标签（不适用于分页）<br>categories分类（不适用于分页）<br>permalink覆盖文章网址<br>keywords仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）</p><h2 id="front-matter使用"><a href="#front-matter使用" class="headerlink" title="front-matter使用"></a>front-matter使用</h2><h2 id="使用-hexo-n-“xxx”-新建一篇为xxx的文件-打开后位于最上方的"><a href="#使用-hexo-n-“xxx”-新建一篇为xxx的文件-打开后位于最上方的" class="headerlink" title="使用 hexo n “xxx” 新建一篇为xxx的文件 打开后位于最上方的"></a>使用 hexo n “xxx” 新建一篇为xxx的文件<br><br> 打开后位于最上方的</h2><p>title: xxx<br>date: 2024-01-01 01:00:00<br>type: </p><hr><p>通过添加参数实现头文件的定义，</p><h2 id="使用时注意"><a href="#使用时注意" class="headerlink" title="使用时注意"></a>使用时注意</h2><p>参数冒号后有空格<br>标签tags，需要配合建立标签page并在theme配置文件的menu中开启<br>分类categories，需要配合建立分类page并在theme配置文件的menu中开启<br>具体详见之前的文章<br>分类与标签可以有多个</p><p>tags:</p><ul><li>xxx</li><li>yyy</li></ul><p>categories：</p><ul><li>aaa</li><li>bbb</li></ul><h3 id="开始写作✿✿ヽ-°▽°-ノ✿"><a href="#开始写作✿✿ヽ-°▽°-ノ✿" class="headerlink" title="开始写作✿✿ヽ(°▽°)ノ✿"></a>开始写作✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="front-matter参数"><a href="#front-matter参数" class="headerlink" title="front-matter参数"></a>front-matter参数</h2><p>layout布局<br>title标题<br>date建立日期<br>updated更新日期<br>comments开启文章的评论功能true<br>tags标签（不适用于分页）<br>categories分类（不适用于分页）<br>permalink覆盖文章网址<br>keywords仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）</p><h2 id="front-matter配置"><a href="#front-matter配置" class="headerlink" title="front-matter配置"></a>front-matter配置</h2><p>使用 hexo n “xxx” 新建一篇为xxx的文件</p><p>打开后显示内容<br>title: xxx<br>date: 2024-01-01 01:00:00<br>type:<br>即为front-matter</p><p>通过添加上面参数实现头文件的定义</p><h2 id="front-matter注意"><a href="#front-matter注意" class="headerlink" title="front-matter注意"></a>front-matter注意</h2><p>参数冒号后有空格<br>标签tags，需要配合建立标签page并在theme配置文件的menu中开启<br>分类categories，需要配合建立分类page并在theme配置文件的menu中开启<br>具体详见之前的文章<br>分类与标签可以有多个<br>$tags:<br>$- xxx<br>$- yyy</p><p>$categories：<br>$- aaa<br>$- bbb</p><h3 id="开始写作✿✿ヽ-°▽°-ノ✿"><a href="#开始写作✿✿ヽ-°▽°-ノ✿" class="headerlink" title="开始写作✿✿ヽ(°▽°)ノ✿"></a>开始写作✿✿ヽ(°▽°)ノ✿</h3>]]></content>
       
       
       <categories>
