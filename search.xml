@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>简要配置Docsify</title>
+      <link href="/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/"/>
+      <url>/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/</url>
+      
+        <content type="html"><![CDATA[<h2 id="添加标题"><a href="#添加标题" class="headerlink" title="添加标题"></a>添加标题</h2><p>添加xxx的标题，在index.html配置name文件</p><pre><code>window.$docsify = &#123;  name: &#39;xxx&#39;,&#125;</code></pre><h2 id="添加侧边"><a href="#添加侧边" class="headerlink" title="添加侧边"></a>添加侧边</h2><p>在index.html配置loadsidebar<br>    window.$docsify &#x3D; {<br>      loadSidebar: true,<br>    }</p><p>在目录下建立_sidebar.md文件</p><h2 id="添加顶栏"><a href="#添加顶栏" class="headerlink" title="添加顶栏"></a>添加顶栏</h2><pre><code>window.$docsify = &#123;  loadNavbar: true,    &#125;</code></pre><p>在目录下建立_navbar.md文件</p><h2 id="添加搜索"><a href="#添加搜索" class="headerlink" title="添加搜索"></a>添加搜索</h2><pre><code>window.$docsify = &#123;  search: &#123;    paths: &#39;auto&#39;,    placeholder: &#39;搜索&#39;,    noData: &#39;找不到结果&#39;,    depth: 3,    &#125;&#125;</code></pre>  <!-- 搜索插件 --><p>  &lt;！script src&#x3D;”&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;docsify&#x2F;lib&#x2F;plugins&#x2F;search.min.js”&gt;</script> </p><h2 id="折叠目录"><a href="#折叠目录" class="headerlink" title="折叠目录"></a>折叠目录</h2><p>设置目录最大层级3<br>    window.$docsify &#x3D; {<br>      subMaxLevel: 3,<br>    }</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docsify </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>部署Dcosify并托管到Github</title>
       <link href="/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
       <url>/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/</url>
@@ -20,9 +45,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> Docsify </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       

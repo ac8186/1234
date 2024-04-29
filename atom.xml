@@ -6,7 +6,7 @@
   <link href="https://ac8186.github.io/atom.xml" rel="self"/>
   
   <link href="https://ac8186.github.io/"/>
-  <updated>2024-04-28T06:58:08.600Z</updated>
+  <updated>2024-04-29T02:59:36.986Z</updated>
   <id>https://ac8186.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简要配置Docsify</title>
+    <link href="https://ac8186.github.io/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/"/>
+    <id>https://ac8186.github.io/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/</id>
+    <published>2024-04-29T02:28:38.000Z</published>
+    <updated>2024-04-29T02:59:36.986Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="添加标题"><a href="#添加标题" class="headerlink" title="添加标题"></a>添加标题</h2><p>添加xxx的标题，在index.html配置name文件</p><pre><code>window.$docsify = &#123;  name: &#39;xxx&#39;,&#125;</code></pre><h2 id="添加侧边"><a href="#添加侧边" class="headerlink" title="添加侧边"></a>添加侧边</h2><p>在index.html配置loadsidebar<br>    window.$docsify &#x3D; {<br>      loadSidebar: true,<br>    }</p><p>在目录下建立_sidebar.md文件</p><h2 id="添加顶栏"><a href="#添加顶栏" class="headerlink" title="添加顶栏"></a>添加顶栏</h2><pre><code>window.$docsify = &#123;  loadNavbar: true,    &#125;</code></pre><p>在目录下建立_navbar.md文件</p><h2 id="添加搜索"><a href="#添加搜索" class="headerlink" title="添加搜索"></a>添加搜索</h2><pre><code>window.$docsify = &#123;  search: &#123;    paths: &#39;auto&#39;,    placeholder: &#39;搜索&#39;,    noData: &#39;找不到结果&#39;,    depth: 3,    &#125;&#125;</code></pre>  <!-- 搜索插件 --><p>  &lt;！script src&#x3D;”&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;docsify&#x2F;lib&#x2F;plugins&#x2F;search.min.js”&gt;</script> </p><h2 id="折叠目录"><a href="#折叠目录" class="headerlink" title="折叠目录"></a>折叠目录</h2><p>设置目录最大层级3<br>    window.$docsify &#x3D; {<br>      subMaxLevel: 3,<br>    }</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;添加标题&quot;&gt;&lt;a href=&quot;#添加标题&quot; class=&quot;headerlink&quot; title=&quot;添加标题&quot;&gt;&lt;/a&gt;添加标题&lt;/h2&gt;&lt;p&gt;添加xxx的标题，在index.html配置name文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;window.$docsify = </summary>
+      
+    
+    
+    
+    <category term="折腾" scheme="https://ac8186.github.io/categories/%E6%8A%98%E8%85%BE/"/>
+    
+    
+    <category term="Docsify" scheme="https://ac8186.github.io/tags/Docsify/"/>
+    
+  </entry>
   
   <entry>
     <title>部署Dcosify并托管到Github</title>
@@ -36,9 +61,9 @@
     <category term="折腾" scheme="https://ac8186.github.io/categories/%E6%8A%98%E8%85%BE/"/>
     
     
-    <category term="Hexo" scheme="https://ac8186.github.io/tags/Hexo/"/>
-    
     <category term="Docsify" scheme="https://ac8186.github.io/tags/Docsify/"/>
+    
+    <category term="Hexo" scheme="https://ac8186.github.io/tags/Hexo/"/>
     
   </entry>
   
