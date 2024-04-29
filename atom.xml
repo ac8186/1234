@@ -6,7 +6,7 @@
   <link href="https://ac8186.github.io/atom.xml" rel="self"/>
   
   <link href="https://ac8186.github.io/"/>
-  <updated>2024-04-29T02:59:36.986Z</updated>
+  <updated>2024-04-29T08:32:39.631Z</updated>
   <id>https://ac8186.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Github私有仓库托管到Cloudflare</title>
+    <link href="https://ac8186.github.io/2024/04/30/Github%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%89%98%E7%AE%A1%E5%88%B0Cloudflare/"/>
+    <id>https://ac8186.github.io/2024/04/30/Github%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%89%98%E7%AE%A1%E5%88%B0Cloudflare/</id>
+    <published>2024-04-30T06:58:53.000Z</published>
+    <updated>2024-04-29T08:32:39.631Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>Github托管网站开启Pages的免费网页必须公开代码内容<br>数据不想公开，可以通过Cloudflare同步Github的私有仓库实现</p><h2 id="Github新建私有仓库"><a href="#Github新建私有仓库" class="headerlink" title="Github新建私有仓库"></a>Github新建私有仓库</h2><p>新建，私有abc</p><h2 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h2><p>cd ~&#x2F;desktop<br>mkdir xxx<br>cd xxx</p><h2 id="git-上传"><a href="#git-上传" class="headerlink" title="git 上传"></a>git 上传</h2><p>git init &#x2F;&#x2F;初始化<br>git add .&#x2F; &#x2F;&#x2F;把所有文件添加到暂存区<br>git commit -m “xxxxx”<br>git remote add origin <a href="https://githunb.com/%E7%94%A8%E6%88%B7%E5%90%8D/abc.git">https://githunb.com/用户名/abc.git</a><br>git push -u &#x2F;&#x2F;推送到仓库</p><h2 id="托管到Cloudflare"><a href="#托管到Cloudflare" class="headerlink" title="托管到Cloudflare"></a>托管到Cloudflare</h2><p>登录Cloudflare控制台<br>Workers和Pages，创建应用程序，Pages，连接到Git，登录Github账户<br>同步所有仓库，或单独仓库，这里选择新创建的abc私有仓库<br>一路下一步，部署完成后，设置个人域名，方便访问</p><h2 id="git更新"><a href="#git更新" class="headerlink" title="git更新"></a>git更新</h2><p>git init<br>git add .&#x2F;<br>git commit “xxx”<br>git push -u<br>couldflare会自动同步内容</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;Github托管网站开启Pages的免费网页必须公开代码内容&lt;br&gt;数据不想公开，可以通过Cloudflare同步Github的私有仓库实现</summary>
+      
+    
+    
+    
+    <category term="折腾" scheme="https://ac8186.github.io/categories/%E6%8A%98%E8%85%BE/"/>
+    
+    
+    <category term="Github" scheme="https://ac8186.github.io/tags/Github/"/>
+    
+    <category term="Cloudflare" scheme="https://ac8186.github.io/tags/Cloudflare/"/>
+    
+  </entry>
   
   <entry>
     <title>简要配置Docsify</title>
@@ -42,9 +68,9 @@
   </entry>
   
   <entry>
-    <title>部署Dcosify并托管到Github</title>
-    <link href="https://ac8186.github.io/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
-    <id>https://ac8186.github.io/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/</id>
+    <title>部署Dcosify托管到Github</title>
+    <link href="https://ac8186.github.io/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
+    <id>https://ac8186.github.io/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E6%89%98%E7%AE%A1%E5%88%B0Github/</id>
     <published>2024-04-28T05:35:00.000Z</published>
     <updated>2024-04-29T03:53:00.000Z</updated>
     
@@ -68,11 +94,11 @@
   </entry>
   
   <entry>
-    <title>详解Hexo的头文件front-matter</title>
-    <link href="https://ac8186.github.io/2024/04/27/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/"/>
-    <id>https://ac8186.github.io/2024/04/27/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/</id>
+    <title>配置Hexo的头文件front-matter</title>
+    <link href="https://ac8186.github.io/2024/04/27/%E9%85%8D%E7%BD%AEHexo%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/"/>
+    <id>https://ac8186.github.io/2024/04/27/%E9%85%8D%E7%BD%AEHexo%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/</id>
     <published>2024-04-27T07:57:32.000Z</published>
-    <updated>2024-04-26T08:23:18.435Z</updated>
+    <updated>2024-04-29T08:20:37.645Z</updated>
     
     <content type="html"><![CDATA[<h2 id="front-matter参数"><a href="#front-matter参数" class="headerlink" title="front-matter参数"></a>front-matter参数</h2><p>layout布局<br>title标题<br>date建立日期<br>updated更新日期<br>comments开启文章的评论功能true<br>tags标签（不适用于分页）<br>categories分类（不适用于分页）<br>permalink覆盖文章网址<br>keywords仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）</p><h2 id="front-matter配置"><a href="#front-matter配置" class="headerlink" title="front-matter配置"></a>front-matter配置</h2><p>使用 hexo n “xxx” 新建一篇为xxx的文件</p><p>打开后显示内容<br>title: xxx<br>date: 2024-01-01 01:00:00<br>type:<br>即为front-matter</p><p>通过添加上面参数实现头文件的定义</p><h2 id="front-matter注意"><a href="#front-matter注意" class="headerlink" title="front-matter注意"></a>front-matter注意</h2><p>参数冒号后有空格<br>标签tags，需要配合建立标签page并在theme配置文件的menu中开启<br>分类categories，需要配合建立分类page并在theme配置文件的menu中开启<br>具体详见之前的文章<br>分类与标签可以有多个<br>$tags:<br>$- xxx<br>$- yyy</p><p>$categories：<br>$- aaa<br>$- bbb</p><h3 id="开始写作✿✿ヽ-°▽°-ノ✿"><a href="#开始写作✿✿ヽ-°▽°-ノ✿" class="headerlink" title="开始写作✿✿ヽ(°▽°)ノ✿"></a>开始写作✿✿ヽ(°▽°)ノ✿</h3>]]></content>
     
@@ -120,7 +146,7 @@
     <link href="https://ac8186.github.io/2024/04/25/%E9%85%8D%E7%BD%AEHexo%E5%B9%B6%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D/"/>
     <id>https://ac8186.github.io/2024/04/25/%E9%85%8D%E7%BD%AEHexo%E5%B9%B6%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D/</id>
     <published>2024-04-25T01:20:54.000Z</published>
-    <updated>2024-04-25T09:00:14.208Z</updated>
+    <updated>2024-04-29T08:29:14.248Z</updated>
     
     <content type="html"><![CDATA[<h2 id="新建内容"><a href="#新建内容" class="headerlink" title="新建内容"></a>新建内容</h2><p>hexo n ”xxx“<br>生成&#x2F;source&#x2F;_post&#x2F;xxx.md</p><h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>hexo new page ”xxx“<br>生成&#x2F;source&#x2F;xxx.md<br>需要配合theme文件中的menu才能显示</p><h2 id="新建分类"><a href="#新建分类" class="headerlink" title="新建分类"></a>新建分类</h2><p>hexo new page categories<br>生成&#x2F;source&#x2F;categories&#x2F;index.md<br>编辑，头文件添加，type: “categories”，保存<br>文章中在头文件中，添加categories：xxx，即可显示分类</p><h2 id="新建标签"><a href="#新建标签" class="headerlink" title="新建标签"></a>新建标签</h2><p>hexo new page tags<br>生成&#x2F;source&#x2F;tags&#x2F;index.md<br>编辑，头文件添加，type: “tags”,保存<br>文章中在头文件中，添加tags：xxx，即可显示标签</p><h2 id="新建about页面"><a href="#新建about页面" class="headerlink" title="新建about页面"></a>新建about页面</h2><p>hexo new page about<br>生成&#x2F;source&#x2F;about&#x2F;index.md<br>编辑，头文件添加，type: “about”,保存</p><h2 id="添加全文搜索"><a href="#添加全文搜索" class="headerlink" title="添加全文搜索"></a>添加全文搜索</h2><p> npm install hexo-generator-searchdb –save</p><p>打开 Hexo 站点的 _config.yml,添加配置<br>search:<br>  path: search.xml<br>  field: post<br>  format: html<br>  limit: 10000</p><p>打开 themes&#x2F;next&#x2F;_config.yml ,搜索关键字 local_search ,设置为 true：<br>!# Local search<br>!# Dependencies: <a href="https://github.com/flashlab/hexo-generator-search">https://github.com/flashlab/hexo-generator-search</a><br>local_search:<br>  enable: true</p><h2 id="添加RSS订阅"><a href="#添加RSS订阅" class="headerlink" title="添加RSS订阅"></a>添加RSS订阅</h2><p>npm install hexo-generator-feed –save</p><h2 id="设置默认为中文"><a href="#设置默认为中文" class="headerlink" title="设置默认为中文"></a>设置默认为中文</h2><p>先确认next&#x2F;language文件夹是zh-CN还是zn-Hans<br>theme文件夹里的是主题配置文件_config.yml，找到language项改为zh-CN&#x2F;zn-Hans<br>本地安装目录_config.yml，找到language项改为zh-CN&#x2F;zn-Hans</p><h2 id="修改底部信息"><a href="#修改底部信息" class="headerlink" title="修改底部信息"></a>修改底部信息</h2><p>theme&#x2F;layout&#x2F;_partial&#x2F;footer.pug</p><h2 id="绑定个人域名"><a href="#绑定个人域名" class="headerlink" title="绑定个人域名"></a>绑定个人域名</h2><p>进入Github库，点击“Create new file”，文件名输入“CNAME”<br>编辑文件内容，添加域名 <a href="http://abc.def.xyz/">http://abc.def.xyz</a><br>拉到页面最下方，点击commit new file<br>登录域名服务平台，DNS解析页面<br>新建解析，类型CNAME，主机类型abc.def.xyz，记录值xxx.github.io,其他默认，保存<br>拓展：二级域名，比如购买了abc.com的域名，则xxx.abc.com为二级域名，xxx可以为任意</p><h2 id="开启Htpps"><a href="#开启Htpps" class="headerlink" title="开启Htpps"></a>开启Htpps</h2><p>注册cloudflare<br><a href="https://dash.cloudflare.com/">https://dash.cloudflare.com</a><br>选website，填入自己的域名，abc.xyz<br>选免费套餐，一路下一步<br>会生成两个DNS地址<br>回到域名服务商平台，更换这两个DNS地址，等待生效</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
     
@@ -135,6 +161,8 @@
     
     <category term="折腾" scheme="https://ac8186.github.io/categories/%E6%8A%98%E8%85%BE/"/>
     
+    
+    <category term="Cloudflare" scheme="https://ac8186.github.io/tags/Cloudflare/"/>
     
     <category term="Hexo" scheme="https://ac8186.github.io/tags/Hexo/"/>
     
@@ -169,7 +197,7 @@
     <link href="https://ac8186.github.io/2024/04/23/hello-world/"/>
     <id>https://ac8186.github.io/2024/04/23/hello-world/</id>
     <published>2024-04-23T09:09:51.862Z</published>
-    <updated>2024-04-23T09:09:51.862Z</updated>
+    <updated>2024-04-29T08:38:53.889Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     

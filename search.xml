@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Github私有仓库托管到Cloudflare</title>
+      <link href="/2024/04/30/Github%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%89%98%E7%AE%A1%E5%88%B0Cloudflare/"/>
+      <url>/2024/04/30/Github%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%89%98%E7%AE%A1%E5%88%B0Cloudflare/</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>Github托管网站开启Pages的免费网页必须公开代码内容<br>数据不想公开，可以通过Cloudflare同步Github的私有仓库实现</p><h2 id="Github新建私有仓库"><a href="#Github新建私有仓库" class="headerlink" title="Github新建私有仓库"></a>Github新建私有仓库</h2><p>新建，私有abc</p><h2 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h2><p>cd ~&#x2F;desktop<br>mkdir xxx<br>cd xxx</p><h2 id="git-上传"><a href="#git-上传" class="headerlink" title="git 上传"></a>git 上传</h2><p>git init &#x2F;&#x2F;初始化<br>git add .&#x2F; &#x2F;&#x2F;把所有文件添加到暂存区<br>git commit -m “xxxxx”<br>git remote add origin <a href="https://githunb.com/%E7%94%A8%E6%88%B7%E5%90%8D/abc.git">https://githunb.com/用户名/abc.git</a><br>git push -u &#x2F;&#x2F;推送到仓库</p><h2 id="托管到Cloudflare"><a href="#托管到Cloudflare" class="headerlink" title="托管到Cloudflare"></a>托管到Cloudflare</h2><p>登录Cloudflare控制台<br>Workers和Pages，创建应用程序，Pages，连接到Git，登录Github账户<br>同步所有仓库，或单独仓库，这里选择新创建的abc私有仓库<br>一路下一步，部署完成后，设置个人域名，方便访问</p><h2 id="git更新"><a href="#git更新" class="headerlink" title="git更新"></a>git更新</h2><p>git init<br>git add .&#x2F;<br>git commit “xxx”<br>git push -u<br>couldflare会自动同步内容</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+            <tag> Cloudflare </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>简要配置Docsify</title>
       <link href="/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/"/>
       <url>/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/</url>
@@ -29,9 +56,9 @@
     
     
     <entry>
-      <title>部署Dcosify并托管到Github</title>
-      <link href="/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
-      <url>/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E5%B9%B6%E6%89%98%E7%AE%A1%E5%88%B0Github/</url>
+      <title>部署Dcosify托管到Github</title>
+      <link href="/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
+      <url>/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E6%89%98%E7%AE%A1%E5%88%B0Github/</url>
       
         <content type="html"><![CDATA[<h2 id="安装Docsify"><a href="#安装Docsify" class="headerlink" title="安装Docsify"></a>安装Docsify</h2><h3 id="在本地创建目录"><a href="#在本地创建目录" class="headerlink" title="在本地创建目录"></a>在本地创建目录</h3><p>cd ~&#x2F;desktop<br>mkdir docsify<br>cd docsify</p><h3 id="安装docsify-cli"><a href="#安装docsify-cli" class="headerlink" title="安装docsify-cli"></a>安装docsify-cli</h3><p>npm i docsify-cli -g</p><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>docsify init .&#x2F;docs</p><h3 id="本地启动"><a href="#本地启动" class="headerlink" title="本地启动"></a>本地启动</h3><p>docsify serve docs (预览&#x2F;docsify&#x2F;docs目录下的文件）<br><a href="http://local:3000/">http://local:3000</a></p><h2 id="托管到Github"><a href="#托管到Github" class="headerlink" title="托管到Github"></a>托管到Github</h2><h3 id="创建新的仓库"><a href="#创建新的仓库" class="headerlink" title="创建新的仓库"></a>创建新的仓库</h3><p>任意命名为abc</p><h3 id="git本地仓库"><a href="#git本地仓库" class="headerlink" title="git本地仓库"></a>git本地仓库</h3><p>echo “# abc” &gt;&gt; README.md<br>git init<br>git add README.md<br>git commit -m “first commit”<br>git remote add origin <a href="https://github.com/xxx/abc.git">https://github.com/xxx/abc.git</a><br>git push -u origin master</p><h3 id="三联git更新"><a href="#三联git更新" class="headerlink" title="三联git更新"></a>三联git更新</h3><p>git add . &#x2F;&#x2F; 添加所有文件到暂存区<br>git commit -m “xxx” &#x2F;&#x2F; 提交到git仓库，xxx为提交内容的备注<br>git push  &#x2F;&#x2F; 推送到github</p><h3 id="开启github的pages"><a href="#开启github的pages" class="headerlink" title="开启github的pages"></a>开启github的pages</h3><p>进入abc仓库，settings，pages，选择运行分支，main，docs，保存</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
       
@@ -56,9 +83,9 @@
     
     
     <entry>
-      <title>详解Hexo的头文件front-matter</title>
-      <link href="/2024/04/27/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/"/>
-      <url>/2024/04/27/%E8%AF%A6%E8%A7%A3Hexo%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/</url>
+      <title>配置Hexo的头文件front-matter</title>
+      <link href="/2024/04/27/%E9%85%8D%E7%BD%AEHexo%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/"/>
+      <url>/2024/04/27/%E9%85%8D%E7%BD%AEHexo%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/</url>
       
         <content type="html"><![CDATA[<h2 id="front-matter参数"><a href="#front-matter参数" class="headerlink" title="front-matter参数"></a>front-matter参数</h2><p>layout布局<br>title标题<br>date建立日期<br>updated更新日期<br>comments开启文章的评论功能true<br>tags标签（不适用于分页）<br>categories分类（不适用于分页）<br>permalink覆盖文章网址<br>keywords仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）</p><h2 id="front-matter配置"><a href="#front-matter配置" class="headerlink" title="front-matter配置"></a>front-matter配置</h2><p>使用 hexo n “xxx” 新建一篇为xxx的文件</p><p>打开后显示内容<br>title: xxx<br>date: 2024-01-01 01:00:00<br>type:<br>即为front-matter</p><p>通过添加上面参数实现头文件的定义</p><h2 id="front-matter注意"><a href="#front-matter注意" class="headerlink" title="front-matter注意"></a>front-matter注意</h2><p>参数冒号后有空格<br>标签tags，需要配合建立标签page并在theme配置文件的menu中开启<br>分类categories，需要配合建立分类page并在theme配置文件的menu中开启<br>具体详见之前的文章<br>分类与标签可以有多个<br>$tags:<br>$- xxx<br>$- yyy</p><p>$categories：<br>$- aaa<br>$- bbb</p><h3 id="开始写作✿✿ヽ-°▽°-ノ✿"><a href="#开始写作✿✿ヽ-°▽°-ノ✿" class="headerlink" title="开始写作✿✿ヽ(°▽°)ノ✿"></a>开始写作✿✿ヽ(°▽°)ノ✿</h3>]]></content>
       
@@ -121,6 +148,8 @@
       
       
         <tags>
+            
+            <tag> Cloudflare </tag>
             
             <tag> Hexo </tag>
             
