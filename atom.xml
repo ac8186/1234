@@ -6,7 +6,7 @@
   <link href="https://ac8186.github.io/atom.xml" rel="self"/>
   
   <link href="https://ac8186.github.io/"/>
-  <updated>2024-04-30T02:19:25.859Z</updated>
+  <updated>2024-04-30T09:33:52.333Z</updated>
   <id>https://ac8186.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最近的负面</title>
+    <link href="https://ac8186.github.io/2024/05/02/%E6%9C%80%E8%BF%91%E7%9A%84%E8%B4%9F%E9%9D%A2/"/>
+    <id>https://ac8186.github.io/2024/05/02/%E6%9C%80%E8%BF%91%E7%9A%84%E8%B4%9F%E9%9D%A2/</id>
+    <published>2024-05-02T09:03:26.000Z</published>
+    <updated>2024-04-30T09:33:52.333Z</updated>
+    
+    <content type="html"><![CDATA[<p>​最近负面信息集中爆发，一时间消化不掉，让人不禁怀疑平静的生活是否一直暗潮汹涌，还是中年人该接收的负面信息太多。</p><ul><li>投资收紧，基建大环境变差</li><li>头部学校取消土木工程专业，有学校教授讲课中说道“项目都没了，你们学什么工程管理”</li><li>去年收入减半，今年公司化债压力仍巨大，今年工资发放都成问题</li><li>公司问题，两位主要领导，一位撤职，一位调离</li><li>集团发布本月中标额创历史新低</li><li>借船出海的香港项目，进场一年以来，费用严重超支，预计亏损巨大</li><li>微信中时常送相关单位（施工、造价、设计院）状况差，裁员，待岗，降薪，甚至以入股的方式反向集资</li></ul><p>​这个世界会好吗。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;​	最近负面信息集中爆发，一时间消化不掉，让人不禁怀疑平静的生活是否一直暗潮汹涌，还是中年人该接收的负面信息太多。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;投资收紧，基建大环境变差&lt;/li&gt;
+&lt;li&gt;头部学校取消土木工程专业，有学校教授讲课中说道“项目都没了，你们学什么工程管理”&lt;/li</summary>
+      
+    
+    
+    
+    <category term="杂记" scheme="https://ac8186.github.io/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+    <category term="Work" scheme="https://ac8186.github.io/tags/Work/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac下Markdown常用快捷键</title>
@@ -116,9 +143,9 @@
     <category term="折腾" scheme="https://ac8186.github.io/categories/%E6%8A%98%E8%85%BE/"/>
     
     
-    <category term="Docsify" scheme="https://ac8186.github.io/tags/Docsify/"/>
-    
     <category term="Hexo" scheme="https://ac8186.github.io/tags/Hexo/"/>
+    
+    <category term="Docsify" scheme="https://ac8186.github.io/tags/Docsify/"/>
     
   </entry>
   
