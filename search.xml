@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>被讨厌的勇气读书笔记</title>
+      <link href="/2024/05/15/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <url>/2024/05/15/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="主观与客观"><a href="#主观与客观" class="headerlink" title="主观与客观"></a>主观与客观</h3><ul><li>承认客观事实，但更主要的是自身对客观事实的定义、思考、认知</li><li>历史确实有影响，但更重要的是你怎么看待这段历史</li><li>主观认识的意义大于客观</li></ul><h3 id="改变与勇气"><a href="#改变与勇气" class="headerlink" title="改变与勇气"></a>改变与勇气</h3><ul><li>你做了不改变的决心，并强化这个认知</li><li>强化不能改变的认知，以此为借口开脱</li><li>我如果怎样，我也能怎样，但是我不是那样，所以我只能这样，负向循环，不满但是也不改</li><li>宁愿在不满的处境里，用借口寻求舒适感，也不付出努力改变自身</li></ul><h3 id="人际与烦恼"><a href="#人际与烦恼" class="headerlink" title="人际与烦恼"></a>人际与烦恼</h3><ul><li><p>人不能脱离群体存在，孤独也是</p></li><li><p>人的一切烦恼都与人际关系有关</p></li><li></li></ul><p><img src="/images/%E6%84%8F%E5%A4%A7%E5%88%A9%E9%A3%8E%E6%99%AF.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Thinking </tag>
+            
+            <tag> Reading </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo配置Waline评论</title>
+      <link href="/2024/05/14/Hexo%E9%85%8D%E7%BD%AEWaline%E8%AF%84%E8%AE%BA/"/>
+      <url>/2024/05/14/Hexo%E9%85%8D%E7%BD%AEWaline%E8%AF%84%E8%AE%BA/</url>
+      
+        <content type="html"><![CDATA[<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>Hexo只能生成静态页面，需要添加并动态评论互动</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ul><li>LeanCloud国际版，建立数据库</li><li>Vercel关联Github，建立Waline应用</li><li>Cloudflare解析Vercel应用</li><li>登录Waline后台进项评论管理</li></ul><h3 id="LeanCloud"><a href="#LeanCloud" class="headerlink" title="LeanCloud"></a>LeanCloud</h3><ul><li><p>注册 <a href="https://console.leancloud.app/register">链接</a></p></li><li><p>创建应用-开发版</p></li><li><p>设置 记录APPID、APPKey、MasterKey</p></li></ul><h3 id="Vercel"><a href="#Vercel" class="headerlink" title="Vercel"></a>Vercel</h3><ul><li><p>登录Vercel，关联Github</p></li><li><p>一键生成应用，<a href="https://vercel.com/new/clone?repository-url=https://github.com/walinejs/waline/tree/main/example">部署</a></p></li></ul><h3 id="Cloudflare"><a href="#Cloudflare" class="headerlink" title="Cloudflare"></a>Cloudflare</h3><ul><li>DNS配置解析到Vercel</li></ul><h3 id="Waline"><a href="#Waline" class="headerlink" title="Waline"></a>Waline</h3><ul><li>&lt;域名&gt;&#x2F;ui&#x2F;register注册管理员（可绑定Github）</li><li>登录并管理</li><li>Hexo主题配置文件开启Waline，并填入评论网址</li></ul><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>主题默认所有页面开启评论系统，如何修改默认关闭，只在个别页面开启</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Waline </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo插件的卸载与安装</title>
       <link href="/2024/05/13/Hexo%E6%8F%92%E4%BB%B6%E7%9A%84%E5%8D%B8%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
       <url>/2024/05/13/Hexo%E6%8F%92%E4%BB%B6%E7%9A%84%E5%8D%B8%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/</url>
