@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2024/05/28/hello-world/"/>
+      <url>/2024/05/28/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><p><img src="/images/1.jpg" alt="Hello World"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github Actions自动生成hexo静态页面</title>
+      <link href="/2024/05/28/Github-Actions%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90hexo%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/"/>
+      <url>/2024/05/28/Github-Actions%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90hexo%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul><li><p>Hexo的痛点之一，需要配置本地环境，并且有很大几率报错，还要debug，尤其在非常用电脑上更新实在不便</p></li><li><p>本地环境的性能，不一定比GitHub主机强</p></li><li><p>需要优雅的简化更新过程</p></li></ul><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ul><li>新建私有仓库</li><li>clone到本地</li><li>本地上传hexo所有代码</li><li>配置actions</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">name: hexo_deploy</span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches: [ &quot;main&quot; ]</span><br><span class="line">  workflow_dispatch: &#123;&#125;</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps: </span><br><span class="line">      - name: checkout</span><br><span class="line">        uses: actions/checkout@master</span><br><span class="line">      - name: use Node 18</span><br><span class="line">        uses: actions/setup-node@v1</span><br><span class="line">        with: </span><br><span class="line">          node-version: 18</span><br><span class="line">      - name: npm install</span><br><span class="line">        run: |</span><br><span class="line">          npm install -g hexo-cli</span><br><span class="line">          npm install</span><br><span class="line">        env:</span><br><span class="line">         CI: true</span><br><span class="line">      - name: hexo build</span><br><span class="line">        run: |</span><br><span class="line">          hexo clean</span><br><span class="line">          hexo generate</span><br><span class="line">        env:</span><br><span class="line">          CI: true</span><br><span class="line">      - name: douban</span><br><span class="line">        run: |</span><br><span class="line">          hexo douban</span><br><span class="line">        env:</span><br><span class="line">          CI: true  </span><br><span class="line">      - name: Deploy</span><br><span class="line">        run: |</span><br><span class="line">         git config --global user.name &quot;用户名&quot;</span><br><span class="line">         git config --global user.email &quot;注册邮箱&quot;</span><br><span class="line">         hexo deploy</span><br></pre></td></tr></table></figure><ul><li>配置git推送</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line"> type: git</span><br><span class="line"> repository:</span><br><span class="line">      github: https://[token]/[用户名]/[仓库名].git,main</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GitHub Actions </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>24年一季度中铁、中铁建、中交、中建运营情况</title>
+      <link href="/2024/05/27/24%E5%B9%B4%E4%B8%80%E5%AD%A3%E5%BA%A6%E4%B8%AD%E9%93%81%E3%80%81%E4%B8%AD%E9%93%81%E5%BB%BA%E3%80%81%E4%B8%AD%E4%BA%A4%E3%80%81%E4%B8%AD%E5%BB%BA%E8%BF%90%E8%90%A5%E6%83%85%E5%86%B5/"/>
+      <url>/2024/05/27/24%E5%B9%B4%E4%B8%80%E5%AD%A3%E5%BA%A6%E4%B8%AD%E9%93%81%E3%80%81%E4%B8%AD%E9%93%81%E5%BB%BA%E3%80%81%E4%B8%AD%E4%BA%A4%E3%80%81%E4%B8%AD%E5%BB%BA%E8%BF%90%E8%90%A5%E6%83%85%E5%86%B5/</url>
+      
+        <content type="html"><![CDATA[<h3 id="经济情况"><a href="#经济情况" class="headerlink" title="经济情况"></a>经济情况</h3><p>根据国家统计局公布数据显示，2024年一季度国内生产总值296,299亿元，按不变价格计算，同比增长5.3%，比上年四季度环比增长1.6%。全国固定资产投资（不含农户）100,042亿元，同比增长4.5%，比上年全年加快1.5个百分点；扣除房地产开发投资，全国固定资产投资增长9.3%。分领域看，**基础设施投资增长6.5%，制造业投资增长9.9%，房地产开发投资下降9.5%**。全国新建商品房销售面积22,668万平方米，同比下降19.4%；新建商品房销售额21,355亿元，下降27.6%。</p><h3 id="中国中铁"><a href="#中国中铁" class="headerlink" title="中国中铁"></a>中国中铁</h3><ul><li>新签合同</li></ul><p>2024 年一季度，实现新签合同额 6,216.4 亿元，同比下降 6.9%。其中境内业务实现新签 合同额 5,724.1 亿元，同比下降 8.8%；境外业务实现新签合同额 492.3 亿元，同比增长 23%。截至报告期末，公司未完合同额为 62,381.1 亿元,较上年末增长 6.16%。</p><table><thead><tr><th>业务类型</th><th>2024 年第一季度新签合同额</th><th>2023 年第一季度新签合同额</th><th>同比增减</th></tr></thead><tbody><tr><td>设计咨询</td><td>75.0</td><td>77.4</td><td>-3.1%</td></tr><tr><td>工程建造</td><td>4701.2</td><td>5060.3</td><td>-7.1%</td></tr><tr><td>装备制造</td><td>144.7</td><td>162.1</td><td>-10.7%</td></tr><tr><td>特色地产</td><td>67.3</td><td>170.5</td><td>-60.5%</td></tr><tr><td>资产经营</td><td>120.5</td><td>402.9</td><td>-70.1%</td></tr><tr><td>资源利用</td><td>61.3</td><td>65.6</td><td>-6.6%</td></tr><tr><td>金融物贸</td><td>180.4</td><td>172.2</td><td>4.8%</td></tr><tr><td>新兴业务</td><td>866.0</td><td>562.8</td><td>53.9%</td></tr><tr><td>合计</td><td>6216.4</td><td>6673.8</td><td>-6.9%</td></tr><tr><td>境内</td><td>5724.1</td><td>6273.6</td><td>-8.8%</td></tr><tr><td>境外</td><td>492.3</td><td>400.2</td><td>23.0%</td></tr></tbody></table><ul><li>营收</li></ul><p> 2024年一季度实现营业总收入2,656.46亿元，同比减少2.56%，综合毛利率8.73%，同比减少0.35个百分点</p><table><thead><tr><th>业务类型</th><th>营业收入</th><th>同比增减</th><th>毛利率（%）</th><th>同比增减</th></tr></thead><tbody><tr><td>基础设施建设</td><td>2,356.11</td><td>0.37%</td><td>7.62%</td><td>减少 0.01 个百分点</td></tr><tr><td>设计咨询</td><td>47.77</td><td>1.11%</td><td>23.60%</td><td>增加 0.67 个百分点</td></tr><tr><td>装备制造</td><td>66.28</td><td>-8.77%</td><td>21.25%</td><td>增加 0.22 个百分点</td></tr><tr><td>房地产开发</td><td>41.83</td><td>-46.90%</td><td>17.74%</td><td>减少 0.26 个百分点</td></tr><tr><td>其他</td><td>144.47</td><td>-19.85%</td><td>13.59%</td><td>减少 1.98 个百分点</td></tr><tr><td>其中：资源利用</td><td>14.31</td><td>-27.05%</td><td>53.78%</td><td>减少 3.83 个百分点</td></tr><tr><td>合计</td><td>2,656.46</td><td>-2.56%</td><td>8.73%</td><td>减少 0.35 个百分点</td></tr></tbody></table><h3 id="中国铁建"><a href="#中国铁建" class="headerlink" title="中国铁建"></a>中国铁建</h3><ul><li>新签合同</li></ul><p>年初至本报告期末，本集团新签合同总额 5,506.895 亿元，为年度计划的 18.35%，同比增长 2.05%。其中，境内业务新签合同额 5,167.436 亿元，占新签合同总额的 93.84%，同比增长 1.46%； 境外业务新签合同额 339.459 亿元，占新签合同总额的 6.16%，同比增长 11.85%。截至 2024 年 3 月 31 日，本集团未完合同额合计 69,886.212 亿元，比上年度末增长 4.47%。其中，境内业务未 完合同额合计 56,945.633 亿元，占未完合同总额的 81.48%；境外业务未完合同额合计 12,940.579 亿元，占未完合同总额的 18.52%。</p><table><thead><tr><th>序号</th><th>产业类型</th><th>年初至本报告期末新签合同额</th><th>同比增减比率（%）</th><th>情况说明</th></tr></thead><tbody><tr><td>1</td><td>工程承包</td><td>4,101.120</td><td>3.12</td><td>&#x2F;</td></tr><tr><td>2</td><td>投资运营</td><td>463.654</td><td>6.65</td><td>&#x2F;</td></tr><tr><td>3</td><td>绿色环保</td><td>276.795</td><td>36.70</td><td>同比增幅较大的主要原因是本集团积极践行绿色发展理念、“碳达峰、碳中和”要求，不断加快绿色转型步伐，订单快速增长。</td></tr><tr><td>4</td><td>规划设计咨询</td><td>57.819</td><td>-32.31</td><td>同比降幅较大的主要原因是受市场影响，项目招标总量减少。</td></tr><tr><td>5</td><td>工业制造</td><td>68.926</td><td>5.05</td><td>&#x2F;</td></tr><tr><td>6</td><td>房地产开发</td><td>137.156</td><td>-31.85</td><td>同比降幅较大的主要原因是房地产市场持续下行，为防控风险，放慢项目产品上市推售的节奏。</td></tr><tr><td>7</td><td>物资物流</td><td>340.419</td><td>-12.83</td><td>&#x2F;</td></tr><tr><td>8</td><td>产业金融</td><td>22.649</td><td>4.55</td><td>&#x2F;</td></tr><tr><td>9</td><td>新兴产业</td><td>38.357</td><td>116.55</td><td>总体规模较小，出现波动属于正常现象。</td></tr><tr><td>合计</td><td>5,506.895</td><td>2.05</td><td>&#x2F;</td><td></td></tr></tbody></table><ul><li>各版块新签</li></ul><p>年初至本报告期末，工程承包产业、投资运营产业、绿色环保产业等基础设施建设项目新签 合同额 4,841.569 亿元，占新签合同总额的 87.92%，同比增长 4.93%。</p><table><thead><tr><th>序号</th><th>业务类型</th><th>年初至本报告期末新签合同额</th><th>同比增减比率（%）</th><th>情况说明</th></tr></thead><tbody><tr><td>1</td><td>铁路工程</td><td>298.477</td><td>-43.26</td><td>同比降幅较大的主要原因是受市场影响，铁路     项目招标总量减少。</td></tr><tr><td>2</td><td>公路工程</td><td>302.138</td><td>-58.70</td><td>同比降幅较大的主要原因是受市场影响，公路     项目招标总量减少。</td></tr><tr><td>3</td><td>城市轨道工程</td><td>95.321</td><td>-12.14</td><td>&#x2F;</td></tr><tr><td>4</td><td>房建工程</td><td>2,845.790</td><td>43.06</td><td>同比增幅较大的主要原因是公司围绕新型城镇化建设，不断巩固房建市场优势，订单实现持续     增长。</td></tr><tr><td>5</td><td>市政工程</td><td>603.976</td><td>-17.32</td><td>&#x2F;</td></tr><tr><td>6</td><td>矿山开采</td><td>190.717</td><td>294.77</td><td>总体规模较小，出现波动属于正常现象。</td></tr><tr><td>7</td><td>水利水运工程</td><td>227.328</td><td>43.84</td><td>同比增幅较大的主要原因是本集团坚持紧跟国     家水网建设规划，不断强化防洪、水资源、水土保持及生态建设等项目承揽，订单快速增长。</td></tr><tr><td>8</td><td>机场工程</td><td>5.975</td><td>-75.07</td><td>总体规模较小，出现波动属于正常现象。</td></tr><tr><td>9</td><td>电力工程</td><td>140.450</td><td>47.17</td><td>同比增幅较大的主要原因是本集团坚持聚焦 “碳达峰、碳中和”目标，加快进军水电、风电     等领域，市场份额持续扩大。</td></tr><tr><td>10</td><td>其他工程</td><td>131.397</td><td>-35.11</td><td>&#x2F;</td></tr><tr><td>合计</td><td>4,841.569</td><td>4.93</td><td>&#x2F;</td><td></td></tr></tbody></table><h3 id="中国建筑"><a href="#中国建筑" class="headerlink" title="中国建筑"></a>中国建筑</h3><ul><li>新签合同</li></ul><p>报告期内，新签合同额 1.19 万亿元，同比增长 9.6%</p><p>新签合同额 8,062 亿元，同比增长 11.4%;其中，公共建 筑类项目占比持续提升，工业厂房新签合同额 2,157 亿元，同比增长 39.8%。基础设施建设与投 资业务快速增长。新签合同额 3,005 亿元，同比增长 23.2%。其中，能源工程、水务及环保、水 利水运新签合同额快速增长。房地产开发与投资业务主动应对地产市场变化。合约销售额 778 亿 元，合约销售面积 263 万平方米。公司坚持精准投资、优中选优，新购置土地储备约 162 万平方 米，主要位于一线及强二线城市，期末拥有土地储备约 8,487 万平方米。勘察设计业务保持平稳 发展。新签合同额 40 亿元，同比降低 3.6%。</p><ul><li>建筑版块新签</li></ul><table><thead><tr><th>序号</th><th>一级类别</th><th>二级类别</th><th>2024 年     1-3 月</th><th>2023 年     1-3 月</th><th>同比增长     （%）</th></tr></thead><tbody><tr><td>1</td><td>住宅</td><td>商品房等</td><td>1,775</td><td>1,700</td><td>4.4</td></tr><tr><td>2</td><td>保障性住房</td><td>保障性住房等</td><td>297</td><td>475</td><td>-37.5</td></tr><tr><td>3</td><td>工业厂房</td><td>工业加工厂房、工业制造厂房等</td><td>2,157</td><td>1,543</td><td>39.8</td></tr><tr><td>4</td><td>科教文卫体设施</td><td>科研设施、教育设施、医疗建筑、文化设施、体育设施、会议会展中     心等</td><td>1,505</td><td>1,453</td><td>3.6</td></tr><tr><td>5</td><td>商业综合</td><td>商用写字楼、城市综合体、酒店等</td><td>1,467</td><td>1,419</td><td>3.4</td></tr><tr><td>6</td><td>其他</td><td>市政配套建筑等</td><td>861</td><td>648</td><td>32.9</td></tr><tr><td>合计</td><td>&#x2F;</td><td>8,062</td><td>7,238</td><td>11.4</td><td></td></tr></tbody></table><ul><li>基建板块新签</li></ul><table><thead><tr><th>序号</th><th>一级类别</th><th>二级类别</th><th>2024 年     1-3 月</th><th>2023 年     1-3 月</th><th>同比增长     （%）</th></tr></thead><tbody><tr><td>1</td><td>市政工程</td><td>市政道路、邮电通讯工程、防卫防灾工     程等</td><td>569</td><td>697</td><td>-18.4</td></tr><tr><td>2</td><td>交通运输工     程</td><td>高速公路、铁路（含高铁）、城市轨道     交通、机场、桥梁等</td><td>596</td><td>801</td><td>-25.6</td></tr><tr><td>3</td><td>能源工程</td><td>光伏发电、风电、核电工程等</td><td>940</td><td>281</td><td>234.8</td></tr><tr><td>4</td><td>水务及环保</td><td>环保工程、供水及处理工程</td><td>365</td><td>196</td><td>86.4</td></tr><tr><td>5</td><td>水利水运</td><td>水利、水运</td><td>75</td><td>30</td><td>155.7</td></tr><tr><td>6</td><td>其他</td><td>石油化工工程等</td><td>459</td><td>434</td><td>5.8</td></tr><tr><td>合计</td><td>&#x2F;</td><td>3,005</td><td>2,438</td><td>23.2</td><td></td></tr></tbody></table><ul><li>营收</li></ul><p>报告期内，公司实现营业收入5,493亿元，同比增长4.7%。从业务板块看，房屋建筑工程业务实现营业收入3,658亿元，同比增长6.1%；基础设施建设与投资业务实现营业收入1,277亿元，同比增长6.4%；房地产开发与投资业务实现营业收入465亿元，同比降低8.8%；勘察设计业务实现营业收入26亿元，同比增长2.5%。 </p><h4 id="中国交建"><a href="#中国交建" class="headerlink" title="中国交建"></a>中国交建</h4><ul><li>新签合同</li></ul><p>2024 年1–3月，公司新签合同金额為人民币5,072.98亿元，同比增长10.81%，完成公司年度目标的25.49%。其中：基建建设业务、基建设计业务、疏浚业务和其他业务分别為人民币4,644.26亿元、人民币101.31亿元、人民币292.19亿元和人民币35.22 亿元。<br>各业务来自於境外地区的新签合同额為人民币912.35亿元（约折合129.43 亿美元），同比增长9.37%，约佔公司新签合同额的18%。其中，基建建设业务、基建设计业务、疏浚业务和其他业务分别為人民币872.83亿元、人民币2.88亿元、人民币31.26 亿元和人民币5.38 亿元。各业务按照公司股比确认基础设施等投资类项目合同额為人民币267.34亿元，预计在设计与施工环节本公司可承接的建安合同额為人民币215.03 亿元。</p><table><thead><tr><th>業務分類</th><th>2024  年1–3 月</th><th></th><th>本年累计</th><th></th><th>2023年累计</th><th>同比</th></tr></thead><tbody><tr><td></td><td>個數</td><td>金額</td><td>個數</td><td>金額</td><td>金額</td><td>(%)</td></tr><tr><td>基建建設業務</td><td>1,482</td><td>4,644.26</td><td>1,482</td><td>4,644.26</td><td>4,012.20</td><td>15.75</td></tr><tr><td>港口建設</td><td>90</td><td>286.41</td><td>90</td><td>286.41</td><td>385.36</td><td>-25.68</td></tr><tr><td>道路與橋樑建設</td><td>148</td><td>729.67</td><td>148</td><td>729.67</td><td>1,051.16</td><td>-30.58</td></tr><tr><td>鐵路建設</td><td>4</td><td>49.35</td><td>4</td><td>49.35</td><td>129.78</td><td>-61.97</td></tr><tr><td>城市建設等</td><td>1,200</td><td>2,706.00</td><td>1,200</td><td>2,706.00</td><td>1,689.39</td><td>60.18</td></tr><tr><td>境外工程</td><td>40</td><td>872.83</td><td>40</td><td>872.83</td><td>756.50</td><td>15.38</td></tr><tr><td>基建設計業務</td><td>1,707</td><td>101.31</td><td>1,707</td><td>101.31</td><td>174.00</td><td>-41.77</td></tr><tr><td>疏浚業務</td><td>340</td><td>292.19</td><td>340</td><td>292.19</td><td>355.54</td><td>-17.82</td></tr><tr><td>其他業務</td><td>不適用</td><td>35.22</td><td>不適用</td><td>35.22</td><td>36.39</td><td>-3.23</td></tr><tr><td>合計</td><td>不適用</td><td>5,072.98</td><td>不適用</td><td>5,072.98</td><td>4,578.13</td><td>10.81</td></tr></tbody></table><ul><li>营收</li></ul><p>营业收入实现人民币1,769.04亿元，同比增长0.18%；营业利润实现人民币93.25亿元，同比增长10.10%</p><h3 id="胡乱分析"><a href="#胡乱分析" class="headerlink" title="胡乱分析"></a>胡乱分析</h3><p>传统版块全线萎缩</p><p>各方都在积极求新</p><p>中铁压力有点大啊</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CREC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>测试obsidian</title>
+      <link href="/2024/05/23/%E6%B5%8B%E8%AF%95obsidian/"/>
+      <url>/2024/05/23/%E6%B5%8B%E8%AF%95obsidian/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Obsidian </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>配置百度收录</title>
+      <link href="/2024/05/21/%E9%85%8D%E7%BD%AE%E7%99%BE%E5%BA%A6%E6%94%B6%E5%BD%95/"/>
+      <url>/2024/05/21/%E9%85%8D%E7%BD%AE%E7%99%BE%E5%BA%A6%E6%94%B6%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="添加网站到百度资源"><a href="#添加网站到百度资源" class="headerlink" title="添加网站到百度资源"></a>添加网站到百度资源</h3><ul><li><p>登录百度资源</p><p><a href="https://ziyuan.baidu.com/">百度搜索资源平台_共创共享鲜活搜索 (baidu.com)</a></p></li><li><p>添加站点</p></li></ul><p>用户中心-站点管理-添加站点</p><ul><li>验证文件</li></ul><p>下载文件-放入source文件，使用浏览器访问该文件</p><ul><li>生成永久链接</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure><p>编辑config.yml，添加permalink</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">permalink: :year/:month:abbrlink.html</span><br><span class="line">abbrlink: </span><br><span class="line">  alg: crc32 #算法选项：crc16丨crc32</span><br><span class="line">  rep: hex #输出进制：dec为十进制，hex为十六进制</span><br></pre></td></tr></table></figure><ul><li>添加sitemap插件</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save </span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure><ul><li>三联更新</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure><ul><li>验证</li></ul><p>访问https:&#x2F;&#x2F;&lt;你的网站&gt;&#x2F;baidusitemap.xml</p><ul><li>正式提交</li></ul><p>在sitmap中填写，https:&#x2F;&#x2F;&lt;你的网站&gt;&#x2F;baidusitemap.xml</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Baidu </tag>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>骑行南沙小环线</title>
+      <link href="/2024/05/20/%E9%AA%91%E8%A1%8C%E5%8D%97%E6%B2%99%E5%B0%8F%E7%8E%AF%E7%BA%BF/"/>
+      <url>/2024/05/20/%E9%AA%91%E8%A1%8C%E5%8D%97%E6%B2%99%E5%B0%8F%E7%8E%AF%E7%BA%BF/</url>
+      
+        <content type="html"><![CDATA[<p>周日早上5点半起床，6点出门，骑了一圈小环线，详见<a href="https://connect.garmin.cn/modern/activity/361516841">骑行数据</a></p><h4 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h4><p>520报名了个骑行活动，52公里，区政府委托给崔克办的，加了群发现都是常参加比赛的大佬，有点没底，所以先骑了一圈，看看状态。虽然可能感觉会掉队，还是挺想参加的。主要是离得近，如果太远，肯定还是退堂鼓了，并且不是老年骑游（没有鄙视，速度可能慢）</p><h4 id="骑行"><a href="#骑行" class="headerlink" title="骑行"></a>骑行</h4><p>早上喝了一碗麦片，带了一杯水就出发了。总体感觉还好，25公里，54分钟，匀速27，心律160。感觉心律还是高了点，但这个速度应该不会掉队，毕竟也不是竞赛。</p><p>今年以来主要有意识的刷踏频，尽量保持踏频不低于80，一般在85-90。踏频上去了，心律就降了。通勤一般就一二区徘徊，比较满意。</p><p>不过这次环线还是到5区了。并且骑完了还感觉有点累。身体素质啊……</p><h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>暴雨，活动取消。</p><p>还好提前体验了一圈</p><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>garmin页面嵌入hexo</p><p>安装</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-tag-garminconnect</span><br></pre></td></tr></table></figure><p>使用</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% garmin false 50% https://connect.garmin.cn/modern/activity/361516841 %&#125;</span><br></pre></td></tr></table></figure><p>不生效，弃用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Riding </tag>
+            
+            <tag> Bike </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>记一次答辩</title>
+      <link href="/2024/05/17/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%AD%94%E8%BE%A9/"/>
+      <url>/2024/05/17/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%AD%94%E8%BE%A9/</url>
+      
+        <content type="html"><![CDATA[<h3 id="先说结果"><a href="#先说结果" class="headerlink" title="先说结果"></a>先说结果</h3><p>专家1，认为我论文中提到专家年纪大面临向电子化转型需要付出更多的学习成本和适应。认为自己有被冒犯到。并提出专家都是年纪大的，没有转型困难，这个观点有反动嫌疑。我……</p><p>专家2，认为论文选题不当，应当写技术论文，别管文件怎么要求，评论文就是要评技术，应当写施工。并表示没有办法打高分自己交不了差。我是经营，不是生产……但对方表示没关系，你要的是通过评审，而我们要评的就是施工技术论文成果</p><p>专家3，认为论文选题不当，先这样评</p><h3 id="答辩后思考"><a href="#答辩后思考" class="headerlink" title="答辩后思考"></a>答辩后思考</h3><p>今年要求有变，不要求必须发论文，答辩也由论文答辩改成了业绩答辩。从人资到技术，不知道到底该答论文还是答业绩。技术部门组织论文答辩，认为答论文。答辩记录表头却是业绩。答辩居然就这样开始了。</p><p>从文件要求分析，今年不要求论文，只要满足条件之一即可申报。可见侧重点已经转向了业绩，评委固执的按以往进行评价。</p><p>我仔细阅读了评审文件，并感觉没有偏题的理解。难道是认知不对？还是必须要迎合小圈子的要求。</p><p>有点难搞，不迎合小圈子，就去磕经济师，至少考的，不用被人拿捏。</p><p>总的来说，都有难度，无论重新发表技术论文还是磕经济，都要成本。</p><p>不愉快的一天(⊙︿⊙)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Experience </tag>
+            
+            <tag> Dissatisfaction </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>被讨厌的勇气读书笔记</title>
+      <link href="/2024/05/15/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <url>/2024/05/15/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="主观与客观"><a href="#主观与客观" class="headerlink" title="主观与客观"></a>主观与客观</h3><ul><li>承认客观事实，但更主要的是自身对客观事实的定义、思考、认知</li><li>历史确实有影响，但更重要的是你怎么看待这段历史</li><li>主观认识的意义大于客观</li></ul><h3 id="改变与勇气"><a href="#改变与勇气" class="headerlink" title="改变与勇气"></a>改变与勇气</h3><ul><li>你做了不改变的决心，并强化这个认知</li><li>强化不能改变的认知，以此为借口开脱</li><li>我如果怎样，我也能怎样，但是我不是那样，所以我只能这样，负向循环，不满但是也不改</li><li>宁愿在不满的处境里，用借口寻求舒适感，也不付出努力改变自身</li></ul><h3 id="人际与烦恼"><a href="#人际与烦恼" class="headerlink" title="人际与烦恼"></a>人际与烦恼</h3><ul><li>人不能脱离群体存在，孤独也是</li><li>每个人都只有自己的赛道，和自己比而不是别人，目的只有自己进步</li><li>不要和别人比，和别人比就会有输赢，有了输赢，就会有复仇</li><li>人之初，是以无力状态开始，寻求好的发展，但是达不到预期，就出现了自卑，自卑的另一种表现是自负</li><li>发怒，不能控制发怒只是没有意识到，发怒只是交流沟通的一种工具，如果没有这种工具，一样可以有效沟通</li></ul><h3 id="自我与别人的期待"><a href="#自我与别人的期待" class="headerlink" title="自我与别人的期待"></a>自我与别人的期待</h3><ul><li>不应活在别人的期待中，强调自我</li><li>奖罚式教育导致了丢失自我，只为满足别人的期待</li></ul><h3 id="阿德勒与弗洛伊德"><a href="#阿德勒与弗洛伊德" class="headerlink" title="阿德勒与弗洛伊德"></a>阿德勒与弗洛伊德</h3><ul><li>都是三大心理学学说之一</li><li>弗洛伊德强调因果论，注重过去的影响</li><li>阿德勒强调目的论，以当前目的解释现象</li></ul><p><img src="/images/%E6%84%8F%E5%A4%A7%E5%88%A9%E9%A3%8E%E6%99%AF.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Thinking </tag>
+            
+            <tag> Reading </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo配置Waline评论</title>
+      <link href="/2024/05/14/Hexo%E9%85%8D%E7%BD%AEWaline%E8%AF%84%E8%AE%BA/"/>
+      <url>/2024/05/14/Hexo%E9%85%8D%E7%BD%AEWaline%E8%AF%84%E8%AE%BA/</url>
+      
+        <content type="html"><![CDATA[<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>Hexo只能生成静态页面，需要添加并动态评论互动</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ul><li>LeanCloud国际版，建立数据库</li><li>Vercel关联Github，建立Waline应用</li><li>Cloudflare解析Vercel应用</li><li>登录Waline后台进项评论管理</li></ul><h3 id="LeanCloud"><a href="#LeanCloud" class="headerlink" title="LeanCloud"></a>LeanCloud</h3><ul><li><p>注册 <a href="https://console.leancloud.app/register">链接</a></p></li><li><p>创建应用-开发版</p></li><li><p>设置 记录APPID、APPKey、MasterKey</p></li></ul><h3 id="Vercel"><a href="#Vercel" class="headerlink" title="Vercel"></a>Vercel</h3><ul><li><p>登录Vercel，关联Github</p></li><li><p>一键生成应用，<a href="https://vercel.com/new/clone?repository-url=https://github.com/walinejs/waline/tree/main/example">部署</a></p></li></ul><h3 id="Cloudflare"><a href="#Cloudflare" class="headerlink" title="Cloudflare"></a>Cloudflare</h3><ul><li>DNS配置解析到Vercel</li></ul><h3 id="Waline"><a href="#Waline" class="headerlink" title="Waline"></a>Waline</h3><ul><li>&lt;域名&gt;&#x2F;ui&#x2F;register注册管理员（可绑定Github）</li><li>登录并管理</li><li>Hexo主题配置文件开启Waline，并填入评论网址</li></ul><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul><li>主题默认所有页面开启评论系统，头文件中添加comments:false，关闭</li><li>已弃用，博客留言互动是伪需求，更多是自身备忘录的属性</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Waline </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo插件的卸载与安装</title>
+      <link href="/2024/05/12/Hexo%E6%8F%92%E4%BB%B6%E7%9A%84%E5%8D%B8%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
+      <url>/2024/05/12/Hexo%E6%8F%92%E4%BB%B6%E7%9A%84%E5%8D%B8%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;xxx&gt;</span><br></pre></td></tr></table></figure><h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall &lt;xxx&gt;</span><br></pre></td></tr></table></figure><h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><ul><li>Rss订阅</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generateor-feed --save</span><br></pre></td></tr></table></figure><p>(没需求，已卸载)</p><ul><li>豆瓣读书、电影</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-douban --save</span><br></pre></td></tr></table></figure><h3 id="继续折腾✿✿ヽ-°▽°-ノ✿"><a href="#继续折腾✿✿ヽ-°▽°-ノ✿" class="headerlink" title="继续折腾✿✿ヽ(°▽°)ノ✿"></a>继续折腾✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>给Hexo添加读书、电影页面</title>
+      <link href="/2024/05/11/%E7%BB%99Hexo%E6%B7%BB%E5%8A%A0%E8%AF%BB%E4%B9%A6%E3%80%81%E7%94%B5%E5%BD%B1%E9%A1%B5%E9%9D%A2/"/>
+      <url>/2024/05/11/%E7%BB%99Hexo%E6%B7%BB%E5%8A%A0%E8%AF%BB%E4%B9%A6%E3%80%81%E7%94%B5%E5%BD%B1%E9%A1%B5%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul><li>建立独立页面，记录读过的书和看过的电影</li><li>页面信息尽量丰富，类似海报墙</li></ul><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><ul><li>利用豆瓣插件，爬取账号下的记录，生成静态页面</li></ul><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-douban --save</span><br></pre></td></tr></table></figure><h4 id="配置hexo"><a href="#配置hexo" class="headerlink" title="配置hexo"></a>配置hexo</h4><p>配置安装目录下 <code>_config.yml</code>添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">douban:</span><br><span class="line">  id: 162448367 #豆瓣id</span><br><span class="line">  builtin: false</span><br><span class="line">  item_per_page: 10 #每页最多数量</span><br><span class="line">  meta_max_line: 4 #每条目文字最多行数</span><br><span class="line">  customize_layout: page #输出布局</span><br><span class="line">  book:</span><br><span class="line">    path: books/index.html #路径</span><br><span class="line">    title: &#x27;This is my book title&#x27; #标题</span><br><span class="line">    quote: &#x27;This is my book quote&#x27; #页面开头</span><br><span class="line">    option:</span><br><span class="line">  movie:</span><br><span class="line">    path: movies/index.html</span><br><span class="line">    title: &#x27;This is my movie title&#x27;</span><br><span class="line">    quote: &#x27;This is my movie quote&#x27;</span><br><span class="line">    option:</span><br><span class="line">  game:</span><br><span class="line">    path: games/index.html</span><br><span class="line">    title: &#x27;This is my game title&#x27;</span><br><span class="line">    quote: &#x27;This is my game quote&#x27;</span><br><span class="line">    option:</span><br><span class="line">  song:</span><br><span class="line">    path: songs/index.html</span><br><span class="line">    title: &#x27;This is my song title&#x27;</span><br><span class="line">    quote: &#x27;This is my song quote&#x27;</span><br><span class="line">    option:</span><br><span class="line">  timeout: 10000 #爬取超时</span><br></pre></td></tr></table></figure><h4 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h4><p>主题目录下 <code>_config.yml</code>添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  - page: movies</span><br><span class="line">    directory: movies/</span><br><span class="line">    icon: fa-movie</span><br><span class="line">  - page: books</span><br><span class="line">    directory: books/</span><br><span class="line">    icon: fa-book</span><br></pre></td></tr></table></figure><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo douban</span><br></pre></td></tr></table></figure><h4 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hexo douban -h</span><br><span class="line">Usage: hexo douban</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line">Generate pages from douban</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -b, --books   Generate douban books only</span><br><span class="line">  -g, --games   Generate douban games only</span><br><span class="line">  -m, --movies  Generate douban movies only</span><br><span class="line">  -s, --songs   Generate douban songs only</span><br></pre></td></tr></table></figure><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul><li>默认展示了books&#x2F;games&#x2F;movies&#x2F;songs，不需要的注释掉即可</li><li>由于hexo clean后，会删除public文件夹，所以具体使用时按照hexo clean - hexo generate - hexo douban的顺序</li><li>Hexo d再安装豆瓣插件后无法使用，要全拼deploy</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Douban </tag>
+            
+            <tag> Book </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GithubDesktop的简单使用</title>
+      <link href="/2024/05/08/GithubDesktop%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"/>
+      <url>/2024/05/08/GithubDesktop%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h3 id="GithubDesktop简介"><a href="#GithubDesktop简介" class="headerlink" title="GithubDesktop简介"></a>GithubDesktop简介</h3><p>GithubDesktop顾名思义就是桌面端，降低学习成本，对非专业人员友好的界面化工具，完全抛弃Git代码，降低使用难度（虽然纯代码的操作非常极客，但是git来git去，不熟悉，总要报错）</p><h3 id="GithubDesktop下载及配置"><a href="#GithubDesktop下载及配置" class="headerlink" title="GithubDesktop下载及配置"></a>GithubDesktop下载及配置</h3><p>根据系统下载，<a href="https://desktop.github.com/">GithubDesktop</a></p><p>再次降低难度，可选<a href="https://github.com/robotze/GithubDesktopZhTool/releases">汉化包</a></p><p><strong>Windows：</strong>点击汉化</p><p><strong>Mac＆Linux：</strong>将<strong>main.js</strong> 和 <strong>renderer.js</strong> 拷贝<strong>替换</strong></p><p>Mac安装目录：&#x2F;Applications&#x2F;GitHub Desktop.app&#x2F;Contents&#x2F;Resources&#x2F;app</p><p>Linux安装目录：&#x2F;usr&#x2F;lib&#x2F;github-desktop&#x2F;resources&#x2F;app</p><h3 id="GithubDesktop使用"><a href="#GithubDesktop使用" class="headerlink" title="GithubDesktop使用"></a>GithubDesktop使用</h3><p>登录账号</p><p>快速开始</p><ul><li>克隆Github仓库代码到本地，修改&#x2F;更新完后填写commit备注，推送到Github仓库</li><li>从本地代码建立仓库，推送到远程Github</li></ul><p>暂时只用到简单功能，有添加在更新</p><h3 id="抛弃代码✿✿ヽ-°▽°-ノ✿"><a href="#抛弃代码✿✿ヽ-°▽°-ノ✿" class="headerlink" title="抛弃代码✿✿ヽ(°▽°)ノ✿"></a>抛弃代码✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+            <tag> GithubDesktop </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo优化配置</title>
+      <link href="/2024/05/07/Hexo%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/"/>
+      <url>/2024/05/07/Hexo%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h2 id="首页文章数"><a href="#首页文章数" class="headerlink" title="首页文章数"></a>首页文章数</h2><p>根目录配置 _config.yml， per_page</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">index_generator:</span><br><span class="line">  path: &#x27;&#x27;</span><br><span class="line">  per_page: 6 </span><br><span class="line">  order_by: -date</span><br></pre></td></tr></table></figure><h2 id="归档页文章数"><a href="#归档页文章数" class="headerlink" title="归档页文章数"></a>归档页文章数</h2><p>根目录配置 _config.yml， per_page</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">per_page: 20  </span><br><span class="line">pagination_dir: page</span><br></pre></td></tr></table></figure><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>根目录source文件夹下，新建images文件夹，存放图片</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">引用图片路径/images/xxx.jpg</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于佛学，关于中式哲学</title>
+      <link href="/2024/05/04/%E5%85%B3%E4%BA%8E%E4%BD%9B%E5%AD%A6%EF%BC%8C%E5%85%B3%E4%BA%8E%E4%B8%AD%E5%BC%8F%E5%93%B2%E5%AD%A6/"/>
+      <url>/2024/05/04/%E5%85%B3%E4%BA%8E%E4%BD%9B%E5%AD%A6%EF%BC%8C%E5%85%B3%E4%BA%8E%E4%B8%AD%E5%BC%8F%E5%93%B2%E5%AD%A6/</url>
+      
+        <content type="html"><![CDATA[<p>​    最近在看王得峰老师的文章，很有触动，记录以自悟。</p><h2 id="佛的认知"><a href="#佛的认知" class="headerlink" title="佛的认知"></a>佛的认知</h2><p>​    一个很有意思的观点，佛非神仙。佛教非宗教，佛学是哲学。佛是人，是众生修行得道的人。拜佛不是拜神，是众人互拜。与以往故有的神鬼宗教认知，第一次对佛教有这样的定义，还是很震撼的。第一次觉得佛教与众生的距离如此之近，毕竟作为现实社会中的唯物主义者，宗教这回事儿实在太遥远了。但在，在这个观点下，佛学不再是潜心修炼为完成神格化，不再是成佛，而是脚踏实地处理众生日常中的各种困惑，是为了更好的解决自己的问题。佛教讲因果循环，人不是第一次来这个世界，也不一定是最后一次，以往来这个世界的经历形成业，这一世是来消上一世的业，不要想太多，也不用内耗，你是来消业的，业消了，事儿完了，你还有啥苦恼呢。</p><h2 id="命的认知"><a href="#命的认知" class="headerlink" title="命的认知"></a>命的认知</h2><p>​    中式的命理学，不是唯心主义，而是彻底的唯物主义。人的命，由出生时的天地所决定好的，相当于初始化设计好的，体现在生辰八字上，也即出厂配置表。你的命是设定好的，成功失败，富贵贫穷，都跟你努力没关系，或者说跟你个人的因素没关系，是排除个体的。坚信信念，以信念驱动努力，以努力换取成功，这条路才是唯心主义。这样看来命理学似乎有点荒谬，现代社会的主流观点更贴近唯心主义。但命理学是古代融汇儒家佛家道家思想，发展而来的一门中式科学，必定有道理。之前听网课，有个老师说，科学的尽头是玄学，玄学的尽头是统计学。古代的科学，大抵都是数据统计的结果。这样理解似乎就让这个观念有了些依据。罗翔老师说我们太渺小了，很多事情都不是由我们能决定的，我们登上的并为我们选择的舞台，我们只能做自己觉得对的事，并接受它的事与愿违。细品其思想与命理学是一致的。知命，下一步是认命。罗翔老师很多观点都在强调积极的认命，坦然的努力，认真过好自己的一生。<br>​     据说命理学发展巅峰著作是王阳明的心学（原本以为是易经），要找时间读一读。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Thinking </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最近的负面</title>
+      <link href="/2024/05/02/%E6%9C%80%E8%BF%91%E7%9A%84%E8%B4%9F%E9%9D%A2/"/>
+      <url>/2024/05/02/%E6%9C%80%E8%BF%91%E7%9A%84%E8%B4%9F%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<p>​最近负面信息集中爆发，一时间消化不掉，让人不禁怀疑平静的生活是否一直暗潮汹涌，还是中年人该接收的负面信息太多。</p><ul><li>投资收紧，基建大环境变差</li><li>头部学校取消土木工程专业，有学校教授讲课中说道“项目都没了，你们学什么工程管理”</li><li>去年收入减半，今年公司化债压力仍巨大，今年工资发放都成问题</li><li>公司问题，两位主要领导，一位撤职，一位调离</li><li>集团发布本月中标额创历史新低</li><li>借船出海的香港项目，进场一年以来，费用严重超支，预计亏损巨大</li><li>微信中时常送相关单位（施工、造价、设计院）状况差，裁员，待岗，降薪，甚至以入股的方式反向集资</li></ul><p>​这个世界会好吗。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Work </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mac下Markdown常用快捷键</title>
+      <link href="/2024/05/01/Mac%E4%B8%8BMarkdown%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+      <url>/2024/05/01/Mac%E4%B8%8BMarkdown%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+      
+        <content type="html"><![CDATA[<h3 id="设置标题级别"><a href="#设置标题级别" class="headerlink" title="设置标题级别"></a>设置标题级别</h3><ul><li>com+1-6：设置为1-6级标题</li><li>com+0：标题转换为文本</li></ul><h3 id="添加下划线"><a href="#添加下划线" class="headerlink" title="添加下划线"></a>添加下划线</h3><ul><li>com+u：添加下划线</li></ul><h3 id="加粗-斜体"><a href="#加粗-斜体" class="headerlink" title="加粗&#x2F;斜体"></a>加粗&#x2F;斜体</h3><ul><li>com+b：字体加粗</li><li>com+i：字体斜体</li></ul><h3 id="插入序列"><a href="#插入序列" class="headerlink" title="插入序列"></a>插入序列</h3><ul><li>com+option+u &#x2F; **+空格：无序序列</li><li>com+option+o：有序序列，从1.编号</li><li>com+option+x：任务序列，即□</li></ul><h3 id="调整缩进"><a href="#调整缩进" class="headerlink" title="调整缩进"></a>调整缩进</h3><ul><li>com+[：减少缩进</li><li>com+]：增加缩进</li></ul><h3 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h3><ul><li>com+k：插入链接地址</li></ul><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><ul><li>com+control+i：插入图片链接</li></ul><h3 id="插入代码"><a href="#插入代码" class="headerlink" title="插入代码"></a>插入代码</h3><ul><li>com+option+c：代码块</li></ul><h3 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h3><ul><li>com+option+t：快速表格</li></ul><h3 id="插入公式"><a href="#插入公式" class="headerlink" title="插入公式"></a>插入公式</h3><ul><li>com+option+b：公式块</li></ul><h3 id="添加分割线"><a href="#添加分割线" class="headerlink" title="添加分割线"></a>添加分割线</h3><ul><li>—+enter：分割线</li><li>++++enter：分割线</li><li>com+option+-：分割线</li></ul><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul><li>序列模式下，回车下一行会自动在当前序列下的下一级，双回车跳出序列模式</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Markdown </tag>
+            
+            <tag> Mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github私有仓库托管到Cloudflare</title>
+      <link href="/2024/04/30/Github%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%89%98%E7%AE%A1%E5%88%B0Cloudflare/"/>
+      <url>/2024/04/30/Github%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%89%98%E7%AE%A1%E5%88%B0Cloudflare/</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>Github托管网站开启Pages的免费网页必须公开代码内容<br>数据不想公开，可以通过Cloudflare同步Github的私有仓库实现</p><h2 id="Github新建私有仓库"><a href="#Github新建私有仓库" class="headerlink" title="Github新建私有仓库"></a>Github新建私有仓库</h2><p>新建，私有abc</p><h2 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/desktop</span><br><span class="line">mkdir xxx</span><br><span class="line">cd xxx</span><br></pre></td></tr></table></figure><h2 id="git-上传"><a href="#git-上传" class="headerlink" title="git 上传"></a>git 上传</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init //初始化</span><br><span class="line">git add ./ //把所有文件添加到暂存区</span><br><span class="line">git commit -m &quot;xxxxx&quot; </span><br><span class="line">git remote add origin https://githunb.com/用户名/abc.git</span><br><span class="line">git push -u //推送到仓库</span><br></pre></td></tr></table></figure><h2 id="托管到Cloudflare"><a href="#托管到Cloudflare" class="headerlink" title="托管到Cloudflare"></a>托管到Cloudflare</h2><p>登录Cloudflare控制台<br>Workers和Pages，创建应用程序，Pages，连接到Git，登录Github账户<br>同步所有仓库，或单独仓库，这里选择新创建的abc私有仓库<br>一路下一步，部署完成后，设置个人域名，方便访问</p><h2 id="git更新"><a href="#git更新" class="headerlink" title="git更新"></a>git更新</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git init </span><br><span class="line">git add ./</span><br><span class="line">git commit &quot;xxx&quot;</span><br><span class="line">git push -u </span><br></pre></td></tr></table></figure><p>couldflare会自动同步内容</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+            <tag> Cloudflare </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>简要配置Docsify</title>
+      <link href="/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/"/>
+      <url>/2024/04/29/%E7%AE%80%E8%A6%81%E9%85%8D%E7%BD%AEDocsify/</url>
+      
+        <content type="html"><![CDATA[<h2 id="添加标题"><a href="#添加标题" class="headerlink" title="添加标题"></a>添加标题</h2><p>添加xxx的标题，在index.html配置name文件</p><pre><code>window.$docsify = &#123;  name: &#39;xxx&#39;,&#125;</code></pre><h2 id="添加侧边"><a href="#添加侧边" class="headerlink" title="添加侧边"></a>添加侧边</h2><p>在index.html配置loadsidebar</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.$docsify = &#123;</span><br><span class="line">  loadSidebar: true,</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><p>在目录下建立_sidebar.md文件</p><h2 id="添加顶栏"><a href="#添加顶栏" class="headerlink" title="添加顶栏"></a>添加顶栏</h2><pre><code>window.$docsify = &#123;  loadNavbar: true,    &#125;</code></pre><p>在目录下建立_navbar.md文件</p><h2 id="添加搜索"><a href="#添加搜索" class="headerlink" title="添加搜索"></a>添加搜索</h2><pre><code>window.$docsify = &#123;  search: &#123;    paths: &#39;auto&#39;,    placeholder: &#39;搜索&#39;,    noData: &#39;找不到结果&#39;,    depth: 3,    &#125;&#125;</code></pre>  <!-- 搜索插件 --><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js&quot;&gt;&lt;/script&gt; </span><br></pre></td></tr></table></figure><h2 id="折叠目录"><a href="#折叠目录" class="headerlink" title="折叠目录"></a>折叠目录</h2><p>设置目录最大层级3</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.$docsify = &#123;</span><br><span class="line"> subMaxLevel: 3,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docsify </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>部署Dcosify托管到Github</title>
+      <link href="/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
+      <url>/2024/04/28/%E9%83%A8%E7%BD%B2Dcosify%E6%89%98%E7%AE%A1%E5%88%B0Github/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装Docsify"><a href="#安装Docsify" class="headerlink" title="安装Docsify"></a>安装Docsify</h2><h3 id="在本地创建目录"><a href="#在本地创建目录" class="headerlink" title="在本地创建目录"></a>在本地创建目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/desktop</span><br><span class="line">mkdir docsify</span><br><span class="line">cd docsify</span><br></pre></td></tr></table></figure><h3 id="安装docsify-cli"><a href="#安装docsify-cli" class="headerlink" title="安装docsify-cli"></a>安装docsify-cli</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i docsify-cli -g</span><br></pre></td></tr></table></figure><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docsify init ./docs</span><br></pre></td></tr></table></figure><h3 id="本地启动"><a href="#本地启动" class="headerlink" title="本地启动"></a>本地启动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docsify serve docs</span><br></pre></td></tr></table></figure><p> 预览&#x2F;docsify&#x2F;docs目录下的文件<br><a href="http://local:3000/">http://local:3000</a></p><h2 id="托管到Github"><a href="#托管到Github" class="headerlink" title="托管到Github"></a>托管到Github</h2><h3 id="创建新的仓库"><a href="#创建新的仓库" class="headerlink" title="创建新的仓库"></a>创建新的仓库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">任意命名为abc</span><br></pre></td></tr></table></figure><h3 id="git本地仓库"><a href="#git本地仓库" class="headerlink" title="git本地仓库"></a>git本地仓库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;# abc&quot; &gt;&gt; README.md</span><br><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://github.com/xxx/abc.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure><h3 id="三联git更新"><a href="#三联git更新" class="headerlink" title="三联git更新"></a>三联git更新</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add . // 添加所有文件到暂存区</span><br><span class="line">git commit -m &quot;xxx&quot; // 提交到git仓库，xxx为提交内容的备注</span><br><span class="line">git push  // 推送到github</span><br></pre></td></tr></table></figure><h3 id="开启github的pages"><a href="#开启github的pages" class="headerlink" title="开启github的pages"></a>开启github的pages</h3><p>进入abc仓库，settings，pages，选择运行分支，main，docs，保存</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Docsify </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>配置Hexo的头文件front-matter</title>
+      <link href="/2024/04/27/%E9%85%8D%E7%BD%AEHexo%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/"/>
+      <url>/2024/04/27/%E9%85%8D%E7%BD%AEHexo%E5%A4%B4%E6%96%87%E4%BB%B6front-matter/</url>
+      
+        <content type="html"><![CDATA[<h2 id="front-matter参数"><a href="#front-matter参数" class="headerlink" title="front-matter参数"></a>front-matter参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">layout布局</span><br><span class="line">title标题</span><br><span class="line">date建立日期</span><br><span class="line">updated更新日期</span><br><span class="line">comments开启文章的评论功能true</span><br><span class="line">tags标签（不适用于分页）</span><br><span class="line">categories分类（不适用于分页）</span><br><span class="line">permalink覆盖文章网址</span><br><span class="line">keywords仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）</span><br></pre></td></tr></table></figure><h2 id="front-matter配置"><a href="#front-matter配置" class="headerlink" title="front-matter配置"></a>front-matter配置</h2><p>使用 hexo n “xxx” 新建一篇为xxx的文件</p><p>打开后显示内容</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">------------------------</span><br><span class="line">title: xxx</span><br><span class="line">date: 2024-01-01 01:00:00</span><br><span class="line">type: </span><br><span class="line">------------------------</span><br></pre></td></tr></table></figure><p>即为front-matter</p><p>通过添加上面参数实现头文件的定义</p><h2 id="front-matter注意"><a href="#front-matter注意" class="headerlink" title="front-matter注意"></a>front-matter注意</h2><p>参数冒号后有空格<br>标签tags，需要配合建立标签page并在theme配置文件的menu中开启<br>分类categories，需要配合建立分类page并在theme配置文件的menu中开启<br>具体详见之前的文章<br>分类与标签可以有多个</p><p>标签</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tags:</span><br><span class="line">- xxx</span><br><span class="line">- yyy</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories：</span><br><span class="line">- aaa</span><br><span class="line">- bbb</span><br></pre></td></tr></table></figure><h3 id="开始写作✿✿ヽ-°▽°-ノ✿"><a href="#开始写作✿✿ヽ-°▽°-ノ✿" class="headerlink" title="开始写作✿✿ヽ(°▽°)ノ✿"></a>开始写作✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在Github托管多个静态网页</title>
+      <link href="/2024/04/26/%E5%9C%A8Github%E6%89%98%E7%AE%A1%E5%A4%9A%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/"/>
+      <url>/2024/04/26/%E5%9C%A8Github%E6%89%98%E7%AE%A1%E5%A4%9A%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/</url>
+      
+        <content type="html"><![CDATA[<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在Github托管个人网页，只能设置与用户名相同的Pages，生成xxx.github.io的地址访问<br>如何托管多个不同的静态网页？</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>以不同仓库存放不同网页，以二级域名访问</p><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>新建仓库，按需求命名为abc<br>进入仓库，上传网页<br>在abc仓库的settings中，开启Pages<br>设置默认访问分支</p><p>访问地址为 xxx.github.io&#x2F;abc&#x2F;</p><p>完成✿✿ヽ(°▽°)ノ✿</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>配置Hexo并绑定域名</title>
+      <link href="/2024/04/25/%E9%85%8D%E7%BD%AEHexo%E5%B9%B6%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D/"/>
+      <url>/2024/04/25/%E9%85%8D%E7%BD%AEHexo%E5%B9%B6%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D/</url>
+      
+        <content type="html"><![CDATA[<h2 id="新建内容"><a href="#新建内容" class="headerlink" title="新建内容"></a>新建内容</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n ”xxx“</span><br></pre></td></tr></table></figure><p>生成&#x2F;source&#x2F;_post&#x2F;xxx.md</p><h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page ”xxx“</span><br></pre></td></tr></table></figure><p>生成&#x2F;source&#x2F;xxx.md<br>需要配合theme文件中的menu才能显示</p><h2 id="新建分类"><a href="#新建分类" class="headerlink" title="新建分类"></a>新建分类</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure><p>生成&#x2F;source&#x2F;categories&#x2F;index.md<br>编辑，头文件添加，type: “categories”，保存<br>文章中在头文件中，添加categories：xxx，即可显示分类</p><h2 id="新建标签"><a href="#新建标签" class="headerlink" title="新建标签"></a>新建标签</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure><p>生成&#x2F;source&#x2F;tags&#x2F;index.md<br>编辑，头文件添加，type: “tags”,保存<br>文章中在头文件中，添加tags：xxx，即可显示标签</p><h2 id="新建about页面"><a href="#新建about页面" class="headerlink" title="新建about页面"></a>新建about页面</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure><p>生成&#x2F;source&#x2F;about&#x2F;index.md<br>编辑，头文件添加，type: “about”,保存</p><h2 id="添加全文搜索"><a href="#添加全文搜索" class="headerlink" title="添加全文搜索"></a>添加全文搜索</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure><p>打开 Hexo 站点的 _config.yml,添加配置</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure><p>打开 themes&#x2F;next&#x2F;_config.yml ,搜索关键字 local_search ,设置为 true：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line"># Dependencies: https://github.com/flashlab/hexo-generator-search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure><h2 id="添加RSS订阅"><a href="#添加RSS订阅" class="headerlink" title="添加RSS订阅"></a>添加RSS订阅</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure><h2 id="设置默认为中文"><a href="#设置默认为中文" class="headerlink" title="设置默认为中文"></a>设置默认为中文</h2><p>先确认next&#x2F;language文件夹是zh-CN还是zn-Hans<br>theme文件夹里的是主题配置文件_config.yml，找到language项改为zh-CN&#x2F;zn-Hans<br>本地安装目录_config.yml，找到language项改为zh-CN&#x2F;zn-Hans</p><h2 id="修改底部信息"><a href="#修改底部信息" class="headerlink" title="修改底部信息"></a>修改底部信息</h2><p>theme&#x2F;layout&#x2F;_partial&#x2F;footer.pug</p><h2 id="绑定个人域名"><a href="#绑定个人域名" class="headerlink" title="绑定个人域名"></a>绑定个人域名</h2><p>进入Github库，点击“Create new file”，文件名输入“CNAME”<br>编辑文件内容，添加域名 <a href="http://abc.def.xyz/">http://abc.def.xyz</a><br>拉到页面最下方，点击commit new file<br>登录域名服务平台，DNS解析页面<br>新建解析，类型CNAME，主机类型abc.def.xyz，记录值xxx.github.io,其他默认，保存<br>拓展：二级域名，比如购买了abc.com的域名，则xxx.abc.com为二级域名，xxx可以为任意</p><h2 id="开启Htpps"><a href="#开启Htpps" class="headerlink" title="开启Htpps"></a>开启Htpps</h2><p>注册cloudflare<br><a href="https://dash.cloudflare.com/">https://dash.cloudflare.com</a><br>选website，填入自己的域名，abc.xyz<br>选免费套餐，一路下一步<br>会生成两个DNS地址<br>回到域名服务商平台，更换这两个DNS地址，等待生效</p><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Cloudflare </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>部署Hexo并托管到Github</title>
+      <link href="/2024/04/24/%E9%83%A8%E7%BD%B2Hexo%E6%89%98%E7%AE%A1%E5%88%B0Github/"/>
+      <url>/2024/04/24/%E9%83%A8%E7%BD%B2Hexo%E6%89%98%E7%AE%A1%E5%88%B0Github/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><h3 id="1-Mac下打开终端"><a href="#1-Mac下打开终端" class="headerlink" title="1.Mac下打开终端"></a>1.Mac下打开终端</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">nvm --version</span><br></pre></td></tr></table></figure><p>如果显示版本号则表示已安装</p><h3 id="2-如没安装"><a href="#2-如没安装" class="headerlink" title="2.如没安装"></a>2.如没安装</h3><p>下载Git<br><a href="https://link.zhihu.com/?target=https://git-scm.com/download/mac">https://link.zhihu.com/?target=https%3A//git-scm.com/download/mac</a></p><p>安装nvm</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash</span><br></pre></td></tr></table></figure><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="1-用vi创建文件并打开进行编辑"><a href="#1-用vi创建文件并打开进行编辑" class="headerlink" title="1.用vi创建文件并打开进行编辑"></a>1.用vi创建文件并打开进行编辑</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi .bash_profile</span><br></pre></td></tr></table></figure><h3 id="2-粘贴代码"><a href="#2-粘贴代码" class="headerlink" title="2.粘贴代码"></a>2.粘贴代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line"></span><br><span class="line">[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; . &quot;$NVM_DIR/nvm.sh&quot;</span><br></pre></td></tr></table></figure><h3 id="3-保存退出"><a href="#3-保存退出" class="headerlink" title="3.保存退出"></a>3.保存退出</h3><p>Shift+ZZ</p><h3 id="4-配置"><a href="#4-配置" class="headerlink" title="4.配置"></a>4.配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h3 id="1-在桌面创建本地目录"><a href="#1-在桌面创建本地目录" class="headerlink" title="1.在桌面创建本地目录"></a>1.在桌面创建本地目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Desktop</span><br><span class="line"></span><br><span class="line">mkdir hexo</span><br><span class="line"></span><br><span class="line">cd hexo</span><br></pre></td></tr></table></figure><h3 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2.初始化"></a>2.初始化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><h3 id="3-报错"><a href="#3-报错" class="headerlink" title="3.报错"></a>3.报错</h3><p>可能是没有权限，按照报错提示进行授权即可</p><h3 id="4-本地启动"><a href="#4-本地启动" class="headerlink" title="4.本地启动"></a>4.本地启动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo generate //生成静态网页 简写为 hexo g</span><br><span class="line"></span><br><span class="line">hexo server //运行hexo 简写为 hexo s</span><br></pre></td></tr></table></figure><h3 id="5-网页测试"><a href="#5-网页测试" class="headerlink" title="5.网页测试"></a>5.网页测试</h3><p><a href="http://localhost:4000/">http://localhost:4000</a></p><h3 id="6-新建一篇博客"><a href="#6-新建一篇博客" class="headerlink" title="6.新建一篇博客"></a>6.新建一篇博客</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n “标题”</span><br></pre></td></tr></table></figure><p>在本地目录下的 &#x2F;source&#x2F;_post&#x2F; 会生成一个“标题.md”<br>使用Markdown语法编辑内容即可</p><h2 id="托管到Github"><a href="#托管到Github" class="headerlink" title="托管到Github"></a>托管到Github</h2><h3 id="1-新建仓库"><a href="#1-新建仓库" class="headerlink" title="1.新建仓库"></a>1.新建仓库</h3><p>打开<a href="https://github.com/%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93New">https://github.com/，新建一个项目仓库New</a> repository<br>名字格式为name.github.io name必须与用户名一致</p><h3 id="2-修改配置"><a href="#2-修改配置" class="headerlink" title="2.修改配置"></a>2.修改配置</h3><p>打开本地目录下的_config.yml文件，并添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/name/name.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><h3 id="3-安装部署工具"><a href="#3-安装部署工具" class="headerlink" title="3.安装部署工具"></a>3.安装部署工具</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><h3 id="4-设置身份令牌"><a href="#4-设置身份令牌" class="headerlink" title="4.设置身份令牌"></a>4.设置身份令牌</h3><p>由于Github安全机制，不能用密码直接git了</p><p>登录Github账户<br>生成新的token<br><a href="https://link.zhihu.com/?target=https://github.com/settings/tokens">https://link.zhihu.com/?target=https%3A//github.com/settings/tokens</a><br>note随便起，全部勾选，保存</p><h3 id="5-添加身份令牌"><a href="#5-添加身份令牌" class="headerlink" title="5.添加身份令牌"></a>5.添加身份令牌</h3><p>身份令牌每次有效期30天，每次更新都要输一遍，通过如下命令添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin https://&lt;your_token&gt;@github.com/&lt;USERNAME&gt;/&lt;REPO&gt;.git</span><br></pre></td></tr></table></figure><h2 id="三联更新"><a href="#三联更新" class="headerlink" title="三联更新"></a>三联更新</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure><h3 id="完成✿✿ヽ-°▽°-ノ✿"><a href="#完成✿✿ヽ-°▽°-ノ✿" class="headerlink" title="完成✿✿ヽ(°▽°)ノ✿"></a>完成✿✿ヽ(°▽°)ノ✿</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>24年咨询工程师考试</title>
+      <link href="/2024/04/17/24%E5%B9%B4%E5%92%A8%E8%AF%A2%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%80%83%E8%AF%95/"/>
+      <url>/2024/04/17/24%E5%B9%B4%E5%92%A8%E8%AF%A2%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%80%83%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h3><p>4月14日，在广东金融学院结束了咨询工程师考试。终于考完了，连续几天都睡不好且上火，进而导致间歇性神经疼，感觉是连锁反应。有一说一，工作了之后再回学校，感觉学校的氛围真好，都是青春的气息，年轻的感觉。作为工科生，到文科学校感觉更不同。而且食堂9块钱的牛腩面就能吃到好几块肉。如果有机会能在大学里某一份工作想必也不错。</p><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>再说咨询考试，知识点覆盖面很广，基本上书上的点都考到了，新教材新加的点倒是没有考什么，机构老师总押新知识点，考的都是经典内容。总的来说复习了，但是功夫不够，不够扎实。真正开始学习从12月底，年前准备放假那段时间放羊了。年后这两个月算是真正学了一段时间。如果没过，明年再扎实刷题背知识点了。这门考试花时间、花精力、买材料、订房、赴考，这一系列真心要付出不少。</p><h3 id="考后"><a href="#考后" class="headerlink" title="考后"></a>考后</h3><p>考完了总想放松一下，又不知道干啥。复习备考阶段压着没空看的东西，现在也没有太多兴趣继续。想折腾软路由，搞个小主板，总选不到合适的，j1900主板最多，但是SATA只有2.0，好点的j3160，双网口的不多，再好点j4025&#x2F;4125，开始超预算了，总之选不到中意的。还有功率计曲柄，网站，知识库平台，露营……好些坑待折腾。</p><h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>继续卷考证呢。目前有两个方向，经济和法律。法律内容有点多，心里没底。从一建的经济到咨询师中的经济，算一个范围内的进阶，下一步该考造价师和经济师。但是造价行业风向变了，大不如前，没有太多动力。今年评高工，资料已经按要求准备了，不知道能不能评得上，还临时发了一篇论文，不知能不能发挥作用。咨询6月出成绩，虽然心里没底。查了下，咨询师相当于中级经济师，可以作为考高级经济师的条件。如果咨询能过或者过不了再战一下，似乎有一定必要性。如果高工没评下来，下一步就磕咨询，以考代评高经？另外还有个财政部的资产评估师，好像也能考，但是也有四门。</p><p>路漫漫啊。还是先玩几个月？</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Examination </tag>
+            
+            <tag> Experience </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我家云刷机后优化配置</title>
+      <link href="/2024/04/17/%E6%88%91%E5%AE%B6%E4%BA%91%E5%88%B7%E6%9C%BA%E5%90%8E%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/"/>
+      <url>/2024/04/17/%E6%88%91%E5%AE%B6%E4%BA%91%E5%88%B7%E6%9C%BA%E5%90%8E%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h3 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h3><p>CPU：瑞芯微RK3328</p><p>内存：1G</p><p>储存：8G</p><p>网卡：板载千兆x1</p><p>USB：一个2.0x1，3.0x1</p><p>硬盘：Sata3.0x1， 支持3.5寸硬盘</p><p>缺点：掉盘（实测2.5寸机械硬盘疯狂掉盘，3.5西数黑盘不掉，但是发热巨大，因为这个原因后面又吃灰了。换了软路由小主机，其功能由软路由实现，不过不当下载机的话，做个小服务还是挺完美）</p><h3 id="固件"><a href="#固件" class="headerlink" title="固件"></a>固件</h3><p>乘风OMV，有两个版本，后面停更了，实际使用区别不大</p><p>最新的是Armbian_Mix_With_Navi_200731_fix</p><h3 id="个性化主机名"><a href="#个性化主机名" class="headerlink" title="个性化主机名"></a>个性化主机名</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl set-hostname XXX</span><br></pre></td></tr></table></figure><h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><p>登录omv-磁盘，查看是否能正确识别<br>文件系统-创建文件系统，输入硬盘识别号XXX，如格式不是ext4则会自动格式化<br>文件系统-共享，创建要共享的文件夹<br>smb-开启服务，创建共享文件夹，设置账户权限<br>lsblk-列出磁盘情况，查看磁盘真实路径</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/srv/dev-disk-by-XXX</span><br></pre></td></tr></table></figure><h3 id="配置ddnsto，远程访问"><a href="#配置ddnsto，远程访问" class="headerlink" title="配置ddnsto，远程访问"></a>配置ddnsto，远程访问</h3><p>一键安装</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(curl -sSL http://fw.koolcenter.com/binary/ddnsto/linux/install_ddnsto_linux.sh)&quot;</span><br></pre></td></tr></table></figure><p>输入key，完成安装<br>登录ddnsto后台，设置远程访问</p><h3 id="配置威力同步"><a href="#配置威力同步" class="headerlink" title="配置威力同步"></a>配置威力同步</h3><p>一键安装</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://www.verysync.com/shell/verysync-linux-installer/go-installer.sh &gt; go-installer.sh</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x go-installer.sh</span><br></pre></td></tr></table></figure><h3 id="更新网易云2-0"><a href="#更新网易云2-0" class="headerlink" title="更新网易云2.0"></a>更新网易云2.0</h3><p>易有云官网下载[链接] (<a href="https://fw.koolcenter.com/binary/LinkEase/AutoUpgrade/">https://fw.koolcenter.com/binary/LinkEase/AutoUpgrade/</a> ) 下载linkease.arm</p><p>固件Armbian_Mix_With_Navi_200731_fix，找到文件路径 &#x2F;opt&#x2F;packages&#x2F;linkease.arm，替换原来的文件，添加可执行权限0775,重启系统，绑定易有云账号</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 折腾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Armbian </tag>
+            
+            <tag> Chainedbox </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
