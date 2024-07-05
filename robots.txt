@@ -1,0 +1,14 @@
+# welcome to : Dannile's Neverland
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /me/
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /images/
+Disallow: /movies/
+Disallow: /books/
+Sitemap: https://bull.eu.org/sitemap.xml
